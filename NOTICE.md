@@ -9,3 +9,9 @@
 | `circuitnet3_` | [sklp-eda-lab/iclr-circuitnet_3.0](https://github.com/sklp-eda-lab/iclr-circuitnet_3.0) | `71984703fcd203ebc84c41b5c19f056cde4be43e` | 由 `provenance.json` 追溯来源，许可证尚未逐例确认 |
 
 CircuitNet3 部分依赖另有原文件头或来源记录，随设计保留。现有配置中的未知值保持原样，具体设计的授权范围以其上游及文件声明为依据。
+
+## 共享单元库
+
+`seeds/libs/nangate45/nangate45.lib` 保留原有 Nangate 版权和文件头声明。随库附上的 [LICENSE](seeds/libs/nangate45/LICENSE) 取自 [OpenROAD-flow-scripts 的 Nangate45 平台](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/blob/master/flow/platforms/nangate45/LICENSE)。
+
+`seeds/libs/sky130/` 收录 SKY130 高密度标准单元库的 16 个工艺角。SkyWater PDK Authors 的 Apache-2.0 许可证副本保存在 [LICENSE](seeds/libs/sky130/LICENSE)，取自 [SkyWater HD 库上游](https://github.com/google/skywater-pdk-libs-sky130_fd_sc_hd/blob/main/LICENSE)。

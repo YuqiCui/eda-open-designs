@@ -1,0 +1,161 @@
+{
+  "validated_on": "2026-11-11",
+  "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)",
+  "library_count": 17,
+  "total_bytes": 212328275,
+  "libraries": [
+    {
+      "id": "nangate45/nangate45",
+      "file": "nangate45/nangate45.lib",
+      "bytes": 6691483,
+      "sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895",
+      "operating_condition": "typical",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 134
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ff_100C_1v65",
+      "file": "sky130/sky130_fd_sc_hd__ff_100C_1v65.lib",
+      "bytes": 12841794,
+      "sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650",
+      "operating_condition": "ff_100C_1v65",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ff_100C_1v95",
+      "file": "sky130/sky130_fd_sc_hd__ff_100C_1v95.lib",
+      "bytes": 12842685,
+      "sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7",
+      "operating_condition": "ff_100C_1v95",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v56",
+      "file": "sky130/sky130_fd_sc_hd__ff_n40C_1v56.lib",
+      "bytes": 12843237,
+      "sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88",
+      "operating_condition": "ff_n40C_1v56",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v65",
+      "file": "sky130/sky130_fd_sc_hd__ff_n40C_1v65.lib",
+      "bytes": 12844108,
+      "sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee",
+      "operating_condition": "ff_n40C_1v65",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v76",
+      "file": "sky130/sky130_fd_sc_hd__ff_n40C_1v76.lib",
+      "bytes": 12844986,
+      "sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26",
+      "operating_condition": "ff_n40C_1v76",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v95",
+      "file": "sky130/sky130_fd_sc_hd__ff_n40C_1v95.lib",
+      "bytes": 12918504,
+      "sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139",
+      "operating_condition": "ff_n40C_1v95",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ss_100C_1v40",
+      "file": "sky130/sky130_fd_sc_hd__ss_100C_1v40.lib",
+      "bytes": 12847083,
+      "sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8",
+      "operating_condition": "ss_100C_1v40",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ss_100C_1v60",
+      "file": "sky130/sky130_fd_sc_hd__ss_100C_1v60.lib",
+      "bytes": 12845260,
+      "sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361",
+      "operating_condition": "ss_100C_1v60",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v28",
+      "file": "sky130/sky130_fd_sc_hd__ss_n40C_1v28.lib",
+      "bytes": 12838331,
+      "sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578",
+      "operating_condition": "ss_n40C_1v28",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v35",
+      "file": "sky130/sky130_fd_sc_hd__ss_n40C_1v35.lib",
+      "bytes": 12844282,
+      "sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855",
+      "operating_condition": "ss_n40C_1v35",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v40",
+      "file": "sky130/sky130_fd_sc_hd__ss_n40C_1v40.lib",
+      "bytes": 12845465,
+      "sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717",
+      "operating_condition": "ss_n40C_1v40",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v44",
+      "file": "sky130/sky130_fd_sc_hd__ss_n40C_1v44.lib",
+      "bytes": 12842498,
+      "sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f",
+      "operating_condition": "ss_n40C_1v44",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v60",
+      "file": "sky130/sky130_fd_sc_hd__ss_n40C_1v60.lib",
+      "bytes": 12916754,
+      "sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5",
+      "operating_condition": "ss_n40C_1v60",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v76",
+      "file": "sky130/sky130_fd_sc_hd__ss_n40C_1v76.lib",
+      "bytes": 12839708,
+      "sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84",
+      "operating_condition": "ss_n40C_1v76",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+      "file": "sky130/sky130_fd_sc_hd__tt_025C_1v80.lib",
+      "bytes": 12841637,
+      "sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135",
+      "operating_condition": "tt_025C_1v80",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    },
+    {
+      "id": "sky130/sky130_fd_sc_hd__tt_100C_1v80",
+      "file": "sky130/sky130_fd_sc_hd__tt_100C_1v80.lib",
+      "bytes": 12840460,
+      "sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b",
+      "operating_condition": "tt_100C_1v80",
+      "yosys_read_liberty": "pass",
+      "imported_cell_types": 428
+    }
+  ]
+}

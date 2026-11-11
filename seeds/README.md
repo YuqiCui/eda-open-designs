@@ -54,7 +54,9 @@ CircuitNet3 的 `tests/simulation.sh` 调用 `scripts/run_circuitnet3_testbench.
 | `@NETLIST_JSON@` | 门级 JSON 网表的输出文件 |
 | `@AIG_JSON@` | AIG JSON 的输出文件 |
 
-在设计目录运行替换后的 `.ys` 脚本。所有路径需使用适合 Yosys 脚本的引号。目标工艺库及功能模型由运行环境提供，库标识按原配置保留。
+在设计目录运行替换后的 `.ys` 脚本。所有路径需使用适合 Yosys 脚本的引号。`@LIBERTY@` 可填写本仓库 `seeds/libs/nangate45/nangate45.lib` 或所选 SKY130 HD 库的绝对路径。`@FUNCTIONAL_MODELS@` 使用运行环境从对应库生成的功能模型。
+
+共享库的完整名单和读取检查结果见 [libs/manifest.json](libs/manifest.json)。17 份 Liberty 均已与源文件逐字节核对，并通过 Yosys `read_liberty -lib` 读取检查。
 
 ## 历史状态
 

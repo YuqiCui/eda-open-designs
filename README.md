@@ -21,12 +21,21 @@ seeds/
     constraints/
     provenance.json
   templates/
+  libs/
+    nangate45/
+    sky130/
 scripts/
   run_seed_simulation.py
   run_circuitnet3_testbench.py
 ```
 
 可选文件按实际资产保留。字段含义见 [Seed 配置说明](seeds/README.md)，第三方来源和许可证记录见 [NOTICE.md](NOTICE.md)。
+
+## 共享 Liberty 库
+
+`seeds/libs/` 收录 Nangate45 典型角和 SKY130 HD 的 16 个工艺角，共 17 份 Liberty，原始文件总大小约 202.5 MiB。库路径、运行条件、SHA-256 和 Yosys 读取结果见 [库清单](seeds/libs/manifest.json)。
+
+门数筛选使用的库为 `seeds/libs/nangate45/nangate45.lib`，其摘要与 `selection.json` 一致。库的标识沿用相对于 `seeds/libs/` 去掉 `.lib` 后的路径，例如 `nangate45/nangate45`。许可证副本随各库保存。
 
 ## 运行已有测试
 
