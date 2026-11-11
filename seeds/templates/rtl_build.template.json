@@ -1,0 +1,35 @@
+{
+  "rtl": {
+    "top": null,
+    "files": null,
+    "language": {
+      "standard": null,
+      "basis": null
+    },
+    "include_dirs": null,
+    "defines": null,
+    "parameters": null,
+    "resources": null
+  },
+  "dependencies": null,
+  "special_constructs": {
+    "blackboxes": null,
+    "inout_or_tristate": null,
+    "memories_or_initialization": null,
+    "hierarchy_attributes": null,
+    "unsupported_or_nonsynthesizable": null
+  },
+  "timing": {
+    "existing_sdc": {
+      "selected": null,
+      "basis": null
+    },
+    "design_kind": null,
+    "ports": null,
+    "clocks": null,
+    "resets": null,
+    "io_clock_associations": null,
+    "clock_relationships": null
+  },
+  "unresolved": null
+}

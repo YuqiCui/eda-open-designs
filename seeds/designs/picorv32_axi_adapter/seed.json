@@ -1,0 +1,1184 @@
+{
+  "schema_version": "1.1",
+  "id": "picorv32_axi_adapter",
+  "source": {
+    "repository": "https://github.com/YosysHQ/picorv32",
+    "revision": "ef203c2b0a3fb793280f5114941416c425c5b461",
+    "license": "ISC"
+  },
+  "rtl": {
+    "top": "picorv32_axi_adapter",
+    "files": [
+      "rtl/design.v"
+    ],
+    "language": {
+      "standard": "verilog-2005",
+      "basis": "rtl/design.v:62-139 仅使用传统 Verilog 结构（module、reg、always @(posedge clk)、assign），无 SystemVerilog 语法或 $error/$fatal 等系统任务；`ifdef FORMAL/DEBUG 分支（rtl/design.v:32-48）默认未激活且不引入 SV 语法；无 `do` 等保留字冲突。"
+    },
+    "include_dirs": [],
+    "defines": {},
+    "parameters": {},
+    "resources": []
+  },
+  "verification": {
+    "compile": {
+      "tool": "iverilog",
+      "timeout_sec": 1800
+    },
+    "timing": {
+      "tool": "opensta",
+      "liberty": null,
+      "sdc": "constraints/timing.sdc",
+      "timeout_sec": 1800
+    },
+    "lint": {
+      "tool": "verilator",
+      "script": "tests/lint.sh",
+      "timeout_sec": 1800,
+      "result_source": "generic_script_replay",
+      "result": {
+        "status": "pass",
+        "returncode": 0,
+        "error": null,
+        "warnings": []
+      }
+    },
+    "cocotb": [
+      {
+        "name": "adapter",
+        "file": "tests/cocotb/test_adapter.py",
+        "module": "test_adapter",
+        "simulator": "icarus",
+        "timeout_sec": 1800
+      }
+    ],
+    "synthesis": {
+      "tool": "yosys_abc",
+      "script": "tests/synth.ys",
+      "timeout_sec": 1800,
+      "library_files": [
+        {
+          "id": "nangate45/nangate45",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/nangate45/nangate45.lib",
+          "sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_100C_1v65",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_100C_1v65.lib",
+          "sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_100C_1v95",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_100C_1v95.lib",
+          "sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v56",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v56.lib",
+          "sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v65",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v65.lib",
+          "sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v76",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v76.lib",
+          "sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v95",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v95.lib",
+          "sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_100C_1v40",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_100C_1v40.lib",
+          "sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_100C_1v60",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_100C_1v60.lib",
+          "sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v28",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v28.lib",
+          "sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v35",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v35.lib",
+          "sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v40",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v40.lib",
+          "sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v44",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v44.lib",
+          "sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v60",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v60.lib",
+          "sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v76",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v76.lib",
+          "sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib",
+          "sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_100C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_100C_1v80.lib",
+          "sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b"
+        }
+      ],
+      "result_source": "generic_script_replay",
+      "supported_liberties": [
+        "nangate45/nangate45",
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65",
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v76",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v95",
+        "sky130/sky130_fd_sc_hd__ss_100C_1v40",
+        "sky130/sky130_fd_sc_hd__ss_100C_1v60",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v28",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v35",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v40",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v44",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v60",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v76",
+        "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+        "sky130/sky130_fd_sc_hd__tt_100C_1v80"
+      ],
+      "baselines": {
+        "nangate45/nangate45": {
+          "cell_area": 43.092,
+          "cell_count": 28,
+          "cell_types": {
+            "AND2_X1": 7,
+            "AOI211_X1": 1,
+            "AOI22_X1": 2,
+            "DFF_X1": 4,
+            "INV_X1": 5,
+            "NAND2_X1": 1,
+            "NAND3_X1": 1,
+            "NAND4_X1": 3,
+            "NOR4_X1": 1,
+            "OAI21_X1": 1,
+            "OR2_X1": 1,
+            "OR4_X1": 1
+          },
+          "wire_count": 52,
+          "wire_bits": 279,
+          "liberty_sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v76": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v95": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v40": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v60": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v28": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v35": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v40": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v44": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v60": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v76": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84"
+        },
+        "sky130/sky130_fd_sc_hd__tt_025C_1v80": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+        },
+        "sky130/sky130_fd_sc_hd__tt_100C_1v80": {
+          "cell_area": 215.2064,
+          "cell_count": 22,
+          "cell_types": {
+            "sky130_fd_sc_hd__a21boi_0": 2,
+            "sky130_fd_sc_hd__a21oi_1": 1,
+            "sky130_fd_sc_hd__and2_0": 2,
+            "sky130_fd_sc_hd__clkinv_1": 1,
+            "sky130_fd_sc_hd__dfxtp_1": 1,
+            "sky130_fd_sc_hd__edfxtp_1": 3,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 1,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 3,
+            "sky130_fd_sc_hd__nand2_1": 1,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nand4b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 3,
+            "sky130_fd_sc_hd__nor4_1": 1
+          },
+          "wire_count": 42,
+          "wire_bits": 269,
+          "liberty_sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b"
+        }
+      },
+      "library_results": {
+        "nangate45/nangate45": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 2 multi-output cells (for example, \"FA_X1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v76": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v95": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v40": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v60": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v28": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v35": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v40": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v44": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v60": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v76": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84"
+        },
+        "sky130/sky130_fd_sc_hd__tt_025C_1v80": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+        },
+        "sky130/sky130_fd_sc_hd__tt_100C_1v80": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b"
+        }
+      },
+      "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)"
+    },
+    "aig": {
+      "tool": "yosys_abc_aigmap",
+      "script": "tests/aig.ys",
+      "timeout_sec": 1800,
+      "model_flow": "liberty_functional_v1",
+      "library_files": [
+        {
+          "id": "nangate45/nangate45",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/nangate45/nangate45.lib",
+          "sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895",
+          "model_path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/verification/aig/models/nangate45/nangate45/functional.v",
+          "model_sha256": "3ae8438663ad4a363733c518689a77104f183ee800befd22a36d1fdc342fb704"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib",
+          "sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135",
+          "model_path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/verification/aig/models/sky130/sky130_fd_sc_hd__tt_025C_1v80/functional.v",
+          "model_sha256": "8483f6625076025e678fb8689343a5028ce1121f257eee8fa0239e2deb114bcc"
+        }
+      ],
+      "result_source": "generic_script_replay",
+      "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)",
+      "result": {
+        "status": "pass",
+        "error": null,
+        "metrics": {
+          "aig_count": 19,
+          "aig_depth": 7,
+          "aig_adp": 133
+        }
+      }
+    }
+  },
+  "completion": {
+    "categories": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "compile": {
+      "status": "unverified",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "lint": {
+      "status": "passed",
+      "run_id": "20261106T054205Z_lint_b421efe1",
+      "fingerprint": "a22268c8fd165a53ffa0a17261476034a8343dc01b78902fc6039d5fef7fe34b"
+    },
+    "synthesis": {
+      "status": "passed",
+      "run_id": "20261106T054316Z_synthesis_ad895d54",
+      "fingerprint": "eb65dd26bf1029b69eab4224be54bcda4835f89356f8add73b7bf22ef3c86900"
+    },
+    "cocotb": {
+      "status": "passed",
+      "run_id": "20261106T054211Z_picorv32_cocotb",
+      "fingerprint": "8f5fd8ae1b5a8c9db995eb059fb1907aaa823a596b48a2c16a593f3fb061a7e7"
+    },
+    "formal": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "timing": {
+      "status": "unverified",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "aig": {
+      "status": "passed",
+      "run_id": "20261106T054554Z_aig_9dcb9cae",
+      "fingerprint": "ad67a2fc749974af50d4434ecfe598db0eb8e5c3e8686fc771980db47b3c8cab"
+    }
+  },
+  "build_inputs": {
+    "template_version": "2.0",
+    "dependencies": [],
+    "special_constructs": {
+      "blackboxes": [],
+      "inout_or_tristate": [],
+      "memories_or_initialization": [],
+      "hierarchy_attributes": [],
+      "unsupported_or_nonsynthesizable": []
+    },
+    "timing": {
+      "existing_sdc": {
+        "selected": "constraints/timing.sdc",
+        "basis": "constraints/timing.sdc:1 明确针对 picorv32_axi_adapter；:10 create_clock 作用于 [get_ports clk]，与顶层端口 clk（rtl/design.v:63）匹配；:20-27 的 input/output 约束引用的端口均存在于顶层，适用性成立。",
+        "files": [
+          "constraints/timing.sdc"
+        ]
+      },
+      "design_kind": "sequential",
+      "ports": [
+        {
+          "name": "clk",
+          "direction": "input",
+          "width": 1,
+          "role": "clock",
+          "basis": "rtl/design.v:63 端口声明；:121 always @(posedge clk) 作为唯一时钟沿。"
+        },
+        {
+          "name": "resetn",
+          "direction": "input",
+          "width": 1,
+          "role": "reset",
+          "basis": "rtl/design.v:63 端口声明；:122 if (!resetn) 低有效复位分支。"
+        },
+        {
+          "name": "mem_axi_awvalid",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:67 输出；:104 组合 assign，依赖寄存器 ack_awvalid。"
+        },
+        {
+          "name": "mem_axi_awready",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:68 输入；:126 在 clk 域 always 块中使用。"
+        },
+        {
+          "name": "mem_axi_awaddr",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:69 输出 [31:0]；:105 assign。"
+        },
+        {
+          "name": "mem_axi_awprot",
+          "direction": "output",
+          "width": 3,
+          "role": "data",
+          "basis": "rtl/design.v:70 输出 [2:0]；:106 assign。"
+        },
+        {
+          "name": "mem_axi_wvalid",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:72 输出；:112 assign，依赖寄存器 ack_wvalid。"
+        },
+        {
+          "name": "mem_axi_wready",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:73 输入；:130 在 clk 域使用。"
+        },
+        {
+          "name": "mem_axi_wdata",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:74 输出 [31:0]；:113 assign。"
+        },
+        {
+          "name": "mem_axi_wstrb",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/design.v:75 输出 [3:0]；:114 assign。"
+        },
+        {
+          "name": "mem_axi_bvalid",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:77 输入；:116 参与 mem_ready 组合逻辑。"
+        },
+        {
+          "name": "mem_axi_bready",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:78 输出；:117 assign。"
+        },
+        {
+          "name": "mem_axi_arvalid",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:80 输出；:108 assign，依赖寄存器 ack_arvalid。"
+        },
+        {
+          "name": "mem_axi_arready",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:81 输入；:128 在 clk 域使用。"
+        },
+        {
+          "name": "mem_axi_araddr",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:82 输出 [31:0]；:109 assign。"
+        },
+        {
+          "name": "mem_axi_arprot",
+          "direction": "output",
+          "width": 3,
+          "role": "data",
+          "basis": "rtl/design.v:83 输出 [2:0]；:110 assign。"
+        },
+        {
+          "name": "mem_axi_rvalid",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:85 输入；:116 参与 mem_ready 组合逻辑。"
+        },
+        {
+          "name": "mem_axi_rready",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:86 输出；:118 assign。"
+        },
+        {
+          "name": "mem_axi_rdata",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:87 输入 [31:0]；:119 assign 至 mem_rdata。"
+        },
+        {
+          "name": "mem_valid",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:91 输入；:104/:125 等在 clk 域及组合逻辑中使用。"
+        },
+        {
+          "name": "mem_instr",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:92 输入；:110 组合使用。"
+        },
+        {
+          "name": "mem_ready",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:93 输出；:116 assign。"
+        },
+        {
+          "name": "mem_addr",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:94 输入 [31:0]；:105/:109 组合使用。"
+        },
+        {
+          "name": "mem_wdata",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:95 输入 [31:0]；:113 组合使用。"
+        },
+        {
+          "name": "mem_wstrb",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/design.v:96 输入 [3:0]；:104/:114 组合使用。"
+        },
+        {
+          "name": "mem_rdata",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:97 输出 [31:0]；:119 assign。"
+        }
+      ],
+      "clocks": [
+        {
+          "name": "clk",
+          "kind": "primary",
+          "target": {
+            "kind": "port",
+            "name": "clk"
+          },
+          "source": null,
+          "active_edges": [
+            "rising"
+          ],
+          "divide_by": null,
+          "multiply_by": null,
+          "basis": "rtl/design.v:63 顶层输入端口；:121 唯一时序块 always @(posedge clk)，无分频/倍频或门控结构；与 constraints/timing.sdc:10 create_clock core_clk [get_ports clk] 一致。"
+        }
+      ],
+      "resets": [
+        {
+          "port": "resetn",
+          "active_level": "low",
+          "kind": "synchronous",
+          "clock_names": [
+            "clk"
+          ],
+          "basis": "rtl/design.v:121-122 复位检查位于 always @(posedge clk) 内部（敏感列表无 negedge resetn），为同步复位；if (!resetn) 表明低有效。"
+        }
+      ],
+      "io_clock_associations": [
+        {
+          "port": "mem_axi_awvalid",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:104 由 clk 域寄存器 ack_awvalid（:127）驱动的组合输出。"
+        },
+        {
+          "port": "mem_axi_awready",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:126 在 posedge clk 块中采样。"
+        },
+        {
+          "port": "mem_axi_awaddr",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:105 组合输出，与 clk 域握手逻辑同属 AXI 接口；constraints/timing.sdc:25 也约束到 core_clk。"
+        },
+        {
+          "port": "mem_axi_awprot",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:106 常量组合输出，属 clk 域 AXI 接口；constraints/timing.sdc:25。"
+        },
+        {
+          "port": "mem_axi_wvalid",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:112 由 clk 域寄存器 ack_wvalid（:131）驱动的组合输出。"
+        },
+        {
+          "port": "mem_axi_wready",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:130 在 posedge clk 块中采样。"
+        },
+        {
+          "port": "mem_axi_wdata",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:113 组合直通输出，属 clk 域 AXI 写通道；constraints/timing.sdc:25。"
+        },
+        {
+          "port": "mem_axi_wstrb",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:114 组合直通输出，属 clk 域 AXI 写通道。"
+        },
+        {
+          "port": "mem_axi_bvalid",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:116 参与组合 mem_ready，并在 :125 于 posedge clk 块中经 mem_ready 使用。"
+        },
+        {
+          "port": "mem_axi_bready",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:117 组合输出，属 clk 域 AXI 写响应通道。"
+        },
+        {
+          "port": "mem_axi_arvalid",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:108 由 clk 域寄存器 ack_arvalid（:129）驱动的组合输出。"
+        },
+        {
+          "port": "mem_axi_arready",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:128 在 posedge clk 块中采样。"
+        },
+        {
+          "port": "mem_axi_araddr",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:109 组合输出，属 clk 域 AXI 读地址通道。"
+        },
+        {
+          "port": "mem_axi_arprot",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:110 组合输出，属 clk 域 AXI 读地址通道。"
+        },
+        {
+          "port": "mem_axi_rvalid",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:116 参与组合 mem_ready，在 clk 域使用（:125）。"
+        },
+        {
+          "port": "mem_axi_rready",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:118 组合输出，属 clk 域 AXI 读数据通道。"
+        },
+        {
+          "port": "mem_axi_rdata",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:119 组合直通至 mem_rdata，属 clk 域读数据路径；constraints/timing.sdc:21-22 将输入约束到 core_clk。"
+        },
+        {
+          "port": "mem_valid",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:125/:132 在 posedge clk 块中采样。"
+        },
+        {
+          "port": "mem_instr",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:110 组合使用，与 clk 域 mem_addr/mem_valid 同一原生存储接口。"
+        },
+        {
+          "port": "mem_ready",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:116 组合输出，并在 :125 反馈到 posedge clk 块（xfer_done）。"
+        },
+        {
+          "port": "mem_addr",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:105/:109 组合使用，属 clk 域原生存储接口；constraints/timing.sdc:21-22。"
+        },
+        {
+          "port": "mem_wdata",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:113 组合直通，属 clk 域原生存储接口。"
+        },
+        {
+          "port": "mem_wstrb",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:104/:112/:114 组合及 clk 域握手逻辑中使用。"
+        },
+        {
+          "port": "mem_rdata",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:119 组合直通输出，属 clk 域读数据路径。"
+        }
+      ],
+      "clock_relationships": [],
+      "default_policy": {
+        "source": "user_provided_SRAM_ariane_initial_template",
+        "template_file": "seeds/templates/single_clock.sdc.template",
+        "apply_when": "no_existing_sdc_and_confirmed_single_primary_input_clock",
+        "time_unit": "ns",
+        "clock_period_ns": 1.0,
+        "input_delay_max_ns": 0.3,
+        "input_delay_min_ns": 0.1,
+        "output_delay_max_ns": null,
+        "output_delay_min_ns": null,
+        "clock_uncertainty_ns": null,
+        "input_transition_ns": null,
+        "driving_cell": null,
+        "output_load_pf": null,
+        "clock_waveform": "50_percent_duty_cycle_evaluation_assumption",
+        "reset_false_path": "do_not_infer",
+        "timing_exceptions": "require_explicit_evidence",
+        "existing_sdc_action": "preserve_and_review",
+        "incomplete_constraints_action": "record_unresolved_do_not_claim_complete"
+      }
+    },
+    "unresolved": null
+  }
+}

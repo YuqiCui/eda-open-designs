@@ -1,0 +1,4698 @@
+{
+  "schema_version": "1.1",
+  "id": "openabcd_wb_conmax",
+  "categories": [
+    "protocol",
+    "control"
+  ],
+  "source": {
+    "repository": "https://github.com/NYU-MLDA/OpenABC",
+    "revision": "ecd7dde67740556eaf842ccab4dc941c348ad8f6",
+    "license": null
+  },
+  "rtl": {
+    "top": "wb_conmax_top",
+    "files": [
+      "rtl/wb_conmax_top.v",
+      "rtl/wb_conmax_master_if.v",
+      "rtl/wb_conmax_slave_if.v",
+      "rtl/wb_conmax_rf.v",
+      "rtl/wb_conmax_msel.v",
+      "rtl/wb_conmax_arb.v",
+      "rtl/wb_conmax_pri_enc.v",
+      "rtl/wb_conmax_pri_dec.v"
+    ],
+    "language": {
+      "standard": "verilog-2005",
+      "basis": "全部为传统 Verilog 语法：ANSI 前的端口列表风格、parameter 声明（rtl/wb_conmax_top.v:64-189）、always @(posedge clk or posedge rst)（rtl/wb_conmax_arb.v:103）、#(参数) 位置例化（rtl/wb_conmax_top.v:1822）、#1 延迟与 initial/$display，无任何 SystemVerilog 结构"
+    },
+    "include_dirs": [
+      "rtl"
+    ],
+    "defines": {},
+    "parameters": {},
+    "resources": []
+  },
+  "verification": {
+    "compile": null,
+    "cocotb": null,
+    "formal": null,
+    "timing": {
+      "tool": "opensta",
+      "liberty": null,
+      "sdc": "constraints/timing.sdc",
+      "timeout_sec": null
+    },
+    "lint": {
+      "tool": "verilator",
+      "script": "tests/lint.sh",
+      "timeout_sec": 1800,
+      "result_source": "generic_script_replay",
+      "result": {
+        "status": "pass",
+        "returncode": 0,
+        "error": null,
+        "warnings": [
+          "%Warning-WIDTHEXPAND: rtl/wb_conmax_pri_dec.v:116:53: Operator EQ expects 2 bits on the RHS, but RHS's CONST '1'h1' generates 1 bits."
+        ]
+      }
+    },
+    "synthesis": {
+      "tool": "yosys_abc",
+      "script": "tests/synth.ys",
+      "timeout_sec": 1800,
+      "library_files": [
+        {
+          "id": "nangate45/nangate45",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/nangate45/nangate45.lib",
+          "sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_100C_1v65",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_100C_1v65.lib",
+          "sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_100C_1v95",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_100C_1v95.lib",
+          "sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v56",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v56.lib",
+          "sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v65",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v65.lib",
+          "sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v76",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v76.lib",
+          "sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v95",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v95.lib",
+          "sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_100C_1v40",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_100C_1v40.lib",
+          "sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_100C_1v60",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_100C_1v60.lib",
+          "sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v28",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v28.lib",
+          "sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v35",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v35.lib",
+          "sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v40",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v40.lib",
+          "sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v44",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v44.lib",
+          "sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v60",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v60.lib",
+          "sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v76",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v76.lib",
+          "sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib",
+          "sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_100C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_100C_1v80.lib",
+          "sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b"
+        }
+      ],
+      "result_source": "generic_script_replay",
+      "supported_liberties": [
+        "nangate45/nangate45",
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65",
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v76",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v95",
+        "sky130/sky130_fd_sc_hd__ss_100C_1v40",
+        "sky130/sky130_fd_sc_hd__ss_100C_1v60",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v28",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v35",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v40",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v44",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v60",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v76",
+        "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+        "sky130/sky130_fd_sc_hd__tt_100C_1v80"
+      ],
+      "baselines": {
+        "nangate45/nangate45": {
+          "cell_area": 25967.186,
+          "cell_count": 18371,
+          "cell_types": {
+            "AND2_X1": 592,
+            "AND3_X1": 158,
+            "AND4_X1": 113,
+            "AOI211_X1": 277,
+            "AOI21_X1": 822,
+            "AOI221_X1": 434,
+            "AOI222_X1": 2318,
+            "AOI22_X1": 3076,
+            "DFFR_X1": 576,
+            "DFF_X1": 210,
+            "INV_X1": 1309,
+            "MUX2_X1": 497,
+            "NAND2_X1": 1295,
+            "NAND3_X1": 1716,
+            "NAND4_X1": 522,
+            "NOR2_X1": 1241,
+            "NOR3_X1": 942,
+            "NOR4_X1": 236,
+            "OAI211_X1": 295,
+            "OAI21_X1": 994,
+            "OAI221_X1": 67,
+            "OAI222_X1": 8,
+            "OAI22_X1": 86,
+            "OAI33_X1": 92,
+            "OR2_X1": 143,
+            "OR3_X1": 308,
+            "OR4_X1": 44
+          },
+          "wire_count": 17568,
+          "wire_bits": 20303,
+          "liberty_sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v76": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v95": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v40": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v60": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v28": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v35": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v40": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v44": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v60": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v76": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84"
+        },
+        "sky130/sky130_fd_sc_hd__tt_025C_1v80": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+        },
+        "sky130/sky130_fd_sc_hd__tt_100C_1v80": {
+          "cell_area": 126666.4832,
+          "cell_count": 17715,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 1,
+            "sky130_fd_sc_hd__a2111oi_0": 32,
+            "sky130_fd_sc_hd__a211o_1": 13,
+            "sky130_fd_sc_hd__a211oi_1": 103,
+            "sky130_fd_sc_hd__a21bo_1": 12,
+            "sky130_fd_sc_hd__a21boi_0": 29,
+            "sky130_fd_sc_hd__a21o_1": 21,
+            "sky130_fd_sc_hd__a21oi_1": 832,
+            "sky130_fd_sc_hd__a221o_1": 34,
+            "sky130_fd_sc_hd__a221oi_1": 467,
+            "sky130_fd_sc_hd__a222oi_1": 2531,
+            "sky130_fd_sc_hd__a22o_1": 330,
+            "sky130_fd_sc_hd__a22oi_1": 1736,
+            "sky130_fd_sc_hd__a311o_1": 2,
+            "sky130_fd_sc_hd__a311oi_1": 43,
+            "sky130_fd_sc_hd__a31o_1": 4,
+            "sky130_fd_sc_hd__a31oi_1": 254,
+            "sky130_fd_sc_hd__a32o_1": 16,
+            "sky130_fd_sc_hd__a32oi_1": 27,
+            "sky130_fd_sc_hd__a41o_1": 5,
+            "sky130_fd_sc_hd__a41oi_1": 25,
+            "sky130_fd_sc_hd__and2_0": 73,
+            "sky130_fd_sc_hd__and3_1": 273,
+            "sky130_fd_sc_hd__and3b_1": 142,
+            "sky130_fd_sc_hd__and4_1": 77,
+            "sky130_fd_sc_hd__clkinv_1": 729,
+            "sky130_fd_sc_hd__dfrtp_1": 576,
+            "sky130_fd_sc_hd__dfxtp_1": 210,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 137,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 58,
+            "sky130_fd_sc_hd__mux2_1": 120,
+            "sky130_fd_sc_hd__mux2i_1": 55,
+            "sky130_fd_sc_hd__nand2_1": 1956,
+            "sky130_fd_sc_hd__nand2b_1": 66,
+            "sky130_fd_sc_hd__nand3_1": 1958,
+            "sky130_fd_sc_hd__nand3b_1": 252,
+            "sky130_fd_sc_hd__nand4_1": 589,
+            "sky130_fd_sc_hd__nand4b_1": 8,
+            "sky130_fd_sc_hd__nor2_1": 1214,
+            "sky130_fd_sc_hd__nor2b_1": 9,
+            "sky130_fd_sc_hd__nor3_1": 446,
+            "sky130_fd_sc_hd__nor3b_1": 260,
+            "sky130_fd_sc_hd__nor4_1": 123,
+            "sky130_fd_sc_hd__nor4b_1": 4,
+            "sky130_fd_sc_hd__nor4bb_1": 1,
+            "sky130_fd_sc_hd__o2111ai_1": 34,
+            "sky130_fd_sc_hd__o211a_1": 15,
+            "sky130_fd_sc_hd__o211ai_1": 75,
+            "sky130_fd_sc_hd__o21a_1": 15,
+            "sky130_fd_sc_hd__o21ai_0": 1241,
+            "sky130_fd_sc_hd__o21bai_1": 17,
+            "sky130_fd_sc_hd__o221a_1": 4,
+            "sky130_fd_sc_hd__o221ai_1": 35,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 90,
+            "sky130_fd_sc_hd__o2bb2ai_1": 1,
+            "sky130_fd_sc_hd__o311a_1": 5,
+            "sky130_fd_sc_hd__o311ai_0": 18,
+            "sky130_fd_sc_hd__o31a_1": 3,
+            "sky130_fd_sc_hd__o31ai_1": 60,
+            "sky130_fd_sc_hd__o32a_1": 4,
+            "sky130_fd_sc_hd__o32ai_1": 23,
+            "sky130_fd_sc_hd__o41ai_1": 10,
+            "sky130_fd_sc_hd__or3_1": 60,
+            "sky130_fd_sc_hd__or3b_1": 130,
+            "sky130_fd_sc_hd__or4_1": 18
+          },
+          "wire_count": 16126,
+          "wire_bits": 18861,
+          "liberty_sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b"
+        }
+      },
+      "library_results": {
+        "nangate45/nangate45": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 2 multi-output cells (for example, \"FA_X1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v76": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v95": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v40": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v60": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v28": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v35": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v40": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v44": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v60": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v76": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84"
+        },
+        "sky130/sky130_fd_sc_hd__tt_025C_1v80": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+        },
+        "sky130/sky130_fd_sc_hd__tt_100C_1v80": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!",
+            "Warning: Encountered `parallel_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `parallel_case' attribute or the SystemVerilog `unique' or `priority' keywords is recommended!",
+            "Warning: Encountered `full_case' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using the Verilog `full_case' attribute or the SystemVerilog `unique' or `unique0' keywords is recommended!",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b"
+        }
+      },
+      "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)"
+    },
+    "aig": {
+      "tool": "yosys_abc_aigmap",
+      "script": "tests/aig.ys",
+      "timeout_sec": 1800,
+      "model_flow": "liberty_functional_v1",
+      "library_files": [
+        {
+          "id": "nangate45/nangate45",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/nangate45/nangate45.lib",
+          "sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895",
+          "model_path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/verification/aig/models/nangate45/nangate45/functional.v",
+          "model_sha256": "3ae8438663ad4a363733c518689a77104f183ee800befd22a36d1fdc342fb704"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib",
+          "sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135",
+          "model_path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/verification/aig/models/sky130/sky130_fd_sc_hd__tt_025C_1v80/functional.v",
+          "model_sha256": "8483f6625076025e678fb8689343a5028ce1121f257eee8fa0239e2deb114bcc"
+        }
+      ],
+      "result_source": "generic_script_replay",
+      "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)",
+      "result": {
+        "status": "pass",
+        "error": null,
+        "metrics": {
+          "aig_count": 39194,
+          "aig_depth": 26,
+          "aig_adp": 1019044
+        }
+      }
+    }
+  },
+  "completion": {
+    "categories": {
+      "status": "stale",
+      "run_id": "20261104T125734Z_categories_fb400c0d",
+      "fingerprint": "036de15308eabf5366f3486b737959aed16a291a25b232bb71281eeae46b1f95"
+    },
+    "compile": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "lint": {
+      "status": "passed",
+      "run_id": "20261105T041224Z_lint_52bc0245",
+      "fingerprint": "d88487e4f91f0495cffd262139074740ee5ffe9da9642828b199d2e0c2516662"
+    },
+    "synthesis": {
+      "status": "passed",
+      "run_id": "20261105T041225Z_synthesis_cf3069bb",
+      "fingerprint": "13520ae0f561035b90fa613daad34e9695f98f28eb1c504f3ab6bc1240a506e5"
+    },
+    "cocotb": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "formal": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "timing": {
+      "status": "unverified",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "aig": {
+      "status": "passed",
+      "run_id": "20261105T041433Z_aig_9d6772a1",
+      "fingerprint": "797a0afeca84ed9271e61da92b1ce44d69c72e1156179d24cfb2cddb437a4bab"
+    }
+  },
+  "build_inputs": {
+    "template_version": "2.0",
+    "dependencies": [],
+    "special_constructs": {
+      "blackboxes": [],
+      "inout_or_tristate": [],
+      "memories_or_initialization": [
+        {
+          "files": [
+            "rtl/wb_conmax_top.v"
+          ],
+          "description": "rtl/wb_conmax_top.v:1806-1814 存在 initial 块（$display/$finish 的 dw<16 参数检查），被 // synopsys translate_off/on（1805/1815）包围，属仅仿真的初始化/检查结构；全设计无寄存器阵列存储器、无 $readmem 初始化文件"
+        }
+      ],
+      "hierarchy_attributes": [],
+      "unsupported_or_nonsynthesizable": [
+        {
+          "files": [
+            "rtl/wb_conmax_top.v",
+            "rtl/wb_conmax_master_if.v",
+            "rtl/wb_conmax_slave_if.v",
+            "rtl/wb_conmax_rf.v",
+            "rtl/wb_conmax_msel.v",
+            "rtl/wb_conmax_arb.v"
+          ],
+          "description": "时序块内 #1 行为延迟（如 rtl/wb_conmax_arb.v:104、rtl/wb_conmax_master_if.v:505、rtl/wb_conmax_slave_if.v:256、rtl/wb_conmax_msel.v:147、rtl/wb_conmax_rf.v:184）；initial/$display/$finish（rtl/wb_conmax_top.v:1806-1814，translate_off 包围）；synopsys parallel_case/full_case 注释 pragma（rtl/wb_conmax_arb.v:118、rtl/wb_conmax_master_if.v:445、rtl/wb_conmax_slave_if.v:299）；infer_multibit pragma（rtl/wb_conmax_rf.v:149-164）；case default 对总线赋 1'bx（如 rtl/wb_conmax_master_if.v:462、rtl/wb_conmax_slave_if.v:308）；rtl/wb_conmax_defines.v:64 的 `timescale 指令"
+        }
+      ]
+    },
+    "timing": {
+      "existing_sdc": {
+        "selected": "constraints/timing.sdc",
+        "basis": "constraints/timing.sdc:1 为 create_clock [get_ports clk_i] -period 5；clk_i 与 wb_conmax_top 顶层唯一时钟输入端口同名（rtl/wb_conmax_top.v:196），端口匹配、适用该设计；文件中无其它约束语句",
+        "files": [
+          "constraints/timing.sdc"
+        ]
+      },
+      "design_kind": "sequential",
+      "ports": [
+        {
+          "name": "clk_i",
+          "direction": "input",
+          "width": 1,
+          "role": "clock",
+          "basis": "rtl/wb_conmax_top.v:196；constraints/timing.sdc:1 对其定义时钟"
+        },
+        {
+          "name": "rst_i",
+          "direction": "input",
+          "width": 1,
+          "role": "reset",
+          "basis": "rtl/wb_conmax_top.v:196；复位用法见 rtl/wb_conmax_arb.v:103-105"
+        },
+        {
+          "name": "m0_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:199，[dw-1:0]，dw=32 源码默认"
+        },
+        {
+          "name": "m0_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:200，[dw-1:0]，dw=32 默认"
+        },
+        {
+          "name": "m0_addr_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:201，[aw-1:0]，aw=32 默认"
+        },
+        {
+          "name": "m0_sel_i",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:202，[sw-1:0]，sw=dw/8=4 默认"
+        },
+        {
+          "name": "m0_we_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:203"
+        },
+        {
+          "name": "m0_cyc_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:204"
+        },
+        {
+          "name": "m0_stb_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:205"
+        },
+        {
+          "name": "m0_ack_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:206"
+        },
+        {
+          "name": "m0_err_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:207"
+        },
+        {
+          "name": "m0_rty_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:208"
+        },
+        {
+          "name": "m1_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:211，[dw-1:0]，dw=32 默认"
+        },
+        {
+          "name": "m1_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:212，[dw-1:0]"
+        },
+        {
+          "name": "m1_addr_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:213，[aw-1:0]"
+        },
+        {
+          "name": "m1_sel_i",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:214，[sw-1:0]，sw=4"
+        },
+        {
+          "name": "m1_we_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:215"
+        },
+        {
+          "name": "m1_cyc_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:216"
+        },
+        {
+          "name": "m1_stb_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:217"
+        },
+        {
+          "name": "m1_ack_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:218"
+        },
+        {
+          "name": "m1_err_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:219"
+        },
+        {
+          "name": "m1_rty_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:220"
+        },
+        {
+          "name": "m2_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:223，[dw-1:0]"
+        },
+        {
+          "name": "m2_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:224，[dw-1:0]"
+        },
+        {
+          "name": "m2_addr_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:225，[aw-1:0]"
+        },
+        {
+          "name": "m2_sel_i",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:226，[sw-1:0]"
+        },
+        {
+          "name": "m2_we_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:227"
+        },
+        {
+          "name": "m2_cyc_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:228"
+        },
+        {
+          "name": "m2_stb_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:229"
+        },
+        {
+          "name": "m2_ack_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:230"
+        },
+        {
+          "name": "m2_err_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:231"
+        },
+        {
+          "name": "m2_rty_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:232"
+        },
+        {
+          "name": "m3_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:235，[dw-1:0]"
+        },
+        {
+          "name": "m3_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:236，[dw-1:0]"
+        },
+        {
+          "name": "m3_addr_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:237，[aw-1:0]"
+        },
+        {
+          "name": "m3_sel_i",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:238，[sw-1:0]"
+        },
+        {
+          "name": "m3_we_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:239"
+        },
+        {
+          "name": "m3_cyc_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:240"
+        },
+        {
+          "name": "m3_stb_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:241"
+        },
+        {
+          "name": "m3_ack_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:242"
+        },
+        {
+          "name": "m3_err_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:243"
+        },
+        {
+          "name": "m3_rty_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:244"
+        },
+        {
+          "name": "m4_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:247，[dw-1:0]"
+        },
+        {
+          "name": "m4_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:248，[dw-1:0]"
+        },
+        {
+          "name": "m4_addr_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:249，[aw-1:0]"
+        },
+        {
+          "name": "m4_sel_i",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:250，[sw-1:0]"
+        },
+        {
+          "name": "m4_we_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:251"
+        },
+        {
+          "name": "m4_cyc_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:252"
+        },
+        {
+          "name": "m4_stb_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:253"
+        },
+        {
+          "name": "m4_ack_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:254"
+        },
+        {
+          "name": "m4_err_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:255"
+        },
+        {
+          "name": "m4_rty_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:256"
+        },
+        {
+          "name": "m5_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:259，[dw-1:0]"
+        },
+        {
+          "name": "m5_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:260，[dw-1:0]"
+        },
+        {
+          "name": "m5_addr_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:261，[aw-1:0]"
+        },
+        {
+          "name": "m5_sel_i",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:262，[sw-1:0]"
+        },
+        {
+          "name": "m5_we_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:263"
+        },
+        {
+          "name": "m5_cyc_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:264"
+        },
+        {
+          "name": "m5_stb_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:265"
+        },
+        {
+          "name": "m5_ack_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:266"
+        },
+        {
+          "name": "m5_err_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:267"
+        },
+        {
+          "name": "m5_rty_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:268"
+        },
+        {
+          "name": "m6_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:271，[dw-1:0]"
+        },
+        {
+          "name": "m6_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:272，[dw-1:0]"
+        },
+        {
+          "name": "m6_addr_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:273，[aw-1:0]"
+        },
+        {
+          "name": "m6_sel_i",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:274，[sw-1:0]"
+        },
+        {
+          "name": "m6_we_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:275"
+        },
+        {
+          "name": "m6_cyc_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:276"
+        },
+        {
+          "name": "m6_stb_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:277"
+        },
+        {
+          "name": "m6_ack_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:278"
+        },
+        {
+          "name": "m6_err_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:279"
+        },
+        {
+          "name": "m6_rty_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:280"
+        },
+        {
+          "name": "m7_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:283，[dw-1:0]"
+        },
+        {
+          "name": "m7_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:284，[dw-1:0]"
+        },
+        {
+          "name": "m7_addr_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:285，[aw-1:0]"
+        },
+        {
+          "name": "m7_sel_i",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:286，[sw-1:0]"
+        },
+        {
+          "name": "m7_we_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:287"
+        },
+        {
+          "name": "m7_cyc_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:288"
+        },
+        {
+          "name": "m7_stb_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:289"
+        },
+        {
+          "name": "m7_ack_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:290"
+        },
+        {
+          "name": "m7_err_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:291"
+        },
+        {
+          "name": "m7_rty_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:292"
+        },
+        {
+          "name": "s0_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:295，[dw-1:0]"
+        },
+        {
+          "name": "s0_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:296，[dw-1:0]"
+        },
+        {
+          "name": "s0_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:297，[aw-1:0]"
+        },
+        {
+          "name": "s0_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:298，[sw-1:0]"
+        },
+        {
+          "name": "s0_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:299"
+        },
+        {
+          "name": "s0_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:300"
+        },
+        {
+          "name": "s0_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:301"
+        },
+        {
+          "name": "s0_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:302"
+        },
+        {
+          "name": "s0_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:303"
+        },
+        {
+          "name": "s0_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:304"
+        },
+        {
+          "name": "s1_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:307，[dw-1:0]"
+        },
+        {
+          "name": "s1_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:308，[dw-1:0]"
+        },
+        {
+          "name": "s1_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:309，[aw-1:0]"
+        },
+        {
+          "name": "s1_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:310，[sw-1:0]"
+        },
+        {
+          "name": "s1_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:311"
+        },
+        {
+          "name": "s1_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:312"
+        },
+        {
+          "name": "s1_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:313"
+        },
+        {
+          "name": "s1_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:314"
+        },
+        {
+          "name": "s1_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:315"
+        },
+        {
+          "name": "s1_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:316"
+        },
+        {
+          "name": "s2_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:319，[dw-1:0]"
+        },
+        {
+          "name": "s2_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:320，[dw-1:0]"
+        },
+        {
+          "name": "s2_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:321，[aw-1:0]"
+        },
+        {
+          "name": "s2_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:322，[sw-1:0]"
+        },
+        {
+          "name": "s2_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:323"
+        },
+        {
+          "name": "s2_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:324"
+        },
+        {
+          "name": "s2_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:325"
+        },
+        {
+          "name": "s2_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:326"
+        },
+        {
+          "name": "s2_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:327"
+        },
+        {
+          "name": "s2_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:328"
+        },
+        {
+          "name": "s3_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:331，[dw-1:0]"
+        },
+        {
+          "name": "s3_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:332，[dw-1:0]"
+        },
+        {
+          "name": "s3_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:333，[aw-1:0]"
+        },
+        {
+          "name": "s3_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:334，[sw-1:0]"
+        },
+        {
+          "name": "s3_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:335"
+        },
+        {
+          "name": "s3_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:336"
+        },
+        {
+          "name": "s3_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:337"
+        },
+        {
+          "name": "s3_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:338"
+        },
+        {
+          "name": "s3_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:339"
+        },
+        {
+          "name": "s3_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:340"
+        },
+        {
+          "name": "s4_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:343，[dw-1:0]"
+        },
+        {
+          "name": "s4_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:344，[dw-1:0]"
+        },
+        {
+          "name": "s4_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:345，[aw-1:0]"
+        },
+        {
+          "name": "s4_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:346，[sw-1:0]"
+        },
+        {
+          "name": "s4_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:347"
+        },
+        {
+          "name": "s4_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:348"
+        },
+        {
+          "name": "s4_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:349"
+        },
+        {
+          "name": "s4_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:350"
+        },
+        {
+          "name": "s4_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:351"
+        },
+        {
+          "name": "s4_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:352"
+        },
+        {
+          "name": "s5_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:355，[dw-1:0]"
+        },
+        {
+          "name": "s5_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:356，[dw-1:0]"
+        },
+        {
+          "name": "s5_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:357，[aw-1:0]"
+        },
+        {
+          "name": "s5_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:358，[sw-1:0]"
+        },
+        {
+          "name": "s5_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:359"
+        },
+        {
+          "name": "s5_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:360"
+        },
+        {
+          "name": "s5_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:361"
+        },
+        {
+          "name": "s5_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:362"
+        },
+        {
+          "name": "s5_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:363"
+        },
+        {
+          "name": "s5_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:364"
+        },
+        {
+          "name": "s6_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:367，[dw-1:0]"
+        },
+        {
+          "name": "s6_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:368，[dw-1:0]"
+        },
+        {
+          "name": "s6_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:369，[aw-1:0]"
+        },
+        {
+          "name": "s6_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:370，[sw-1:0]"
+        },
+        {
+          "name": "s6_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:371"
+        },
+        {
+          "name": "s6_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:372"
+        },
+        {
+          "name": "s6_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:373"
+        },
+        {
+          "name": "s6_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:374"
+        },
+        {
+          "name": "s6_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:375"
+        },
+        {
+          "name": "s6_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:376"
+        },
+        {
+          "name": "s7_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:379，[dw-1:0]"
+        },
+        {
+          "name": "s7_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:380，[dw-1:0]"
+        },
+        {
+          "name": "s7_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:381，[aw-1:0]"
+        },
+        {
+          "name": "s7_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:382，[sw-1:0]"
+        },
+        {
+          "name": "s7_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:383"
+        },
+        {
+          "name": "s7_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:384"
+        },
+        {
+          "name": "s7_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:385"
+        },
+        {
+          "name": "s7_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:386"
+        },
+        {
+          "name": "s7_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:387"
+        },
+        {
+          "name": "s7_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:388"
+        },
+        {
+          "name": "s8_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:391，[dw-1:0]"
+        },
+        {
+          "name": "s8_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:392，[dw-1:0]"
+        },
+        {
+          "name": "s8_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:393，[aw-1:0]"
+        },
+        {
+          "name": "s8_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:394，[sw-1:0]"
+        },
+        {
+          "name": "s8_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:395"
+        },
+        {
+          "name": "s8_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:396"
+        },
+        {
+          "name": "s8_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:397"
+        },
+        {
+          "name": "s8_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:398"
+        },
+        {
+          "name": "s8_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:399"
+        },
+        {
+          "name": "s8_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:400"
+        },
+        {
+          "name": "s9_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:403，[dw-1:0]"
+        },
+        {
+          "name": "s9_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:404，[dw-1:0]"
+        },
+        {
+          "name": "s9_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:405，[aw-1:0]"
+        },
+        {
+          "name": "s9_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:406，[sw-1:0]"
+        },
+        {
+          "name": "s9_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:407"
+        },
+        {
+          "name": "s9_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:408"
+        },
+        {
+          "name": "s9_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:409"
+        },
+        {
+          "name": "s9_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:410"
+        },
+        {
+          "name": "s9_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:411"
+        },
+        {
+          "name": "s9_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:412"
+        },
+        {
+          "name": "s10_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:415，[dw-1:0]"
+        },
+        {
+          "name": "s10_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:416，[dw-1:0]"
+        },
+        {
+          "name": "s10_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:417，[aw-1:0]"
+        },
+        {
+          "name": "s10_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:418，[sw-1:0]"
+        },
+        {
+          "name": "s10_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:419"
+        },
+        {
+          "name": "s10_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:420"
+        },
+        {
+          "name": "s10_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:421"
+        },
+        {
+          "name": "s10_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:422"
+        },
+        {
+          "name": "s10_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:423"
+        },
+        {
+          "name": "s10_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:424"
+        },
+        {
+          "name": "s11_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:427，[dw-1:0]"
+        },
+        {
+          "name": "s11_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:428，[dw-1:0]"
+        },
+        {
+          "name": "s11_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:429，[aw-1:0]"
+        },
+        {
+          "name": "s11_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:430，[sw-1:0]"
+        },
+        {
+          "name": "s11_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:431"
+        },
+        {
+          "name": "s11_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:432"
+        },
+        {
+          "name": "s11_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:433"
+        },
+        {
+          "name": "s11_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:434"
+        },
+        {
+          "name": "s11_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:435"
+        },
+        {
+          "name": "s11_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:436"
+        },
+        {
+          "name": "s12_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:439，[dw-1:0]"
+        },
+        {
+          "name": "s12_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:440，[dw-1:0]"
+        },
+        {
+          "name": "s12_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:441，[aw-1:0]"
+        },
+        {
+          "name": "s12_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:442，[sw-1:0]"
+        },
+        {
+          "name": "s12_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:443"
+        },
+        {
+          "name": "s12_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:444"
+        },
+        {
+          "name": "s12_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:445"
+        },
+        {
+          "name": "s12_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:446"
+        },
+        {
+          "name": "s12_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:447"
+        },
+        {
+          "name": "s12_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:448"
+        },
+        {
+          "name": "s13_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:451，[dw-1:0]"
+        },
+        {
+          "name": "s13_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:452，[dw-1:0]"
+        },
+        {
+          "name": "s13_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:453，[aw-1:0]"
+        },
+        {
+          "name": "s13_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:454，[sw-1:0]"
+        },
+        {
+          "name": "s13_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:455"
+        },
+        {
+          "name": "s13_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:456"
+        },
+        {
+          "name": "s13_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:457"
+        },
+        {
+          "name": "s13_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:458"
+        },
+        {
+          "name": "s13_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:459"
+        },
+        {
+          "name": "s13_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:460"
+        },
+        {
+          "name": "s14_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:463，[dw-1:0]"
+        },
+        {
+          "name": "s14_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:464，[dw-1:0]"
+        },
+        {
+          "name": "s14_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:465，[aw-1:0]"
+        },
+        {
+          "name": "s14_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:466，[sw-1:0]"
+        },
+        {
+          "name": "s14_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:467"
+        },
+        {
+          "name": "s14_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:468"
+        },
+        {
+          "name": "s14_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:469"
+        },
+        {
+          "name": "s14_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:470"
+        },
+        {
+          "name": "s14_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:471"
+        },
+        {
+          "name": "s14_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:472"
+        },
+        {
+          "name": "s15_data_i",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:475，[dw-1:0]"
+        },
+        {
+          "name": "s15_data_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:476，[dw-1:0]"
+        },
+        {
+          "name": "s15_addr_o",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:477，[aw-1:0]"
+        },
+        {
+          "name": "s15_sel_o",
+          "direction": "output",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:478，[sw-1:0]"
+        },
+        {
+          "name": "s15_we_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:479"
+        },
+        {
+          "name": "s15_cyc_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:480"
+        },
+        {
+          "name": "s15_stb_o",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:481"
+        },
+        {
+          "name": "s15_ack_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:482"
+        },
+        {
+          "name": "s15_err_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:483"
+        },
+        {
+          "name": "s15_rty_i",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/wb_conmax_top.v:484"
+        }
+      ],
+      "clocks": [
+        {
+          "name": "clk_i",
+          "kind": "primary",
+          "target": {
+            "kind": "port",
+            "name": "clk_i"
+          },
+          "source": null,
+          "active_edges": [
+            "rising"
+          ],
+          "divide_by": null,
+          "multiply_by": null,
+          "basis": "顶层唯一时钟输入端口 clk_i（rtl/wb_conmax_top.v:196）；所有实例 clk_i 均接该端口（如 rtl/wb_conmax_top.v:1823/3228/4764），内部时序逻辑全部 posedge clk_i（如 rtl/wb_conmax_master_if.v:504、rtl/wb_conmax_slave_if.v:255、rtl/wb_conmax_rf.v:183、rtl/wb_conmax_arb.v:103）；无分频/倍频/门控时钟结构"
+        }
+      ],
+      "resets": [
+        {
+          "port": "rst_i",
+          "active_level": "high",
+          "kind": "mixed",
+          "clock_names": [
+            "clk_i"
+          ],
+          "basis": "高有效：if(rst)/if(rst_i) 复位（rtl/wb_conmax_arb.v:103-105、rtl/wb_conmax_master_if.v:504-506、rtl/wb_conmax_rf.v:190-193）；异步用法 always @(posedge clk or posedge rst_i)（rtl/wb_conmax_arb.v:103 等）；同步用法 always @(posedge clk_i) 内 if(rst_i)（rtl/wb_conmax_msel.v:146-149）→ mixed；复位不驱动任何时钟结构"
+        }
+      ],
+      "io_clock_associations": [
+        {
+          "port": "m0_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m0_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m0_addr_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m0_sel_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m0_we_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m0_cyc_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m0_stb_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m0_ack_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m0_err_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m0_rty_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m0 实例接 clk_i（rtl/wb_conmax_top.v:1823）"
+        },
+        {
+          "port": "m1_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m1_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m1_addr_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m1_sel_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m1_we_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m1_cyc_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m1_stb_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m1_ack_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m1_err_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m1_rty_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m1 实例接 clk_i（rtl/wb_conmax_top.v:1998）"
+        },
+        {
+          "port": "m2_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m2_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m2_addr_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m2_sel_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m2_we_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m2_cyc_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m2_stb_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m2_ack_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m2_err_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m2_rty_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m2 实例接 clk_i（rtl/wb_conmax_top.v:2173）"
+        },
+        {
+          "port": "m3_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m3_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m3_addr_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m3_sel_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m3_we_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m3_cyc_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m3_stb_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m3_ack_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m3_err_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m3_rty_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m3 实例接 clk_i（rtl/wb_conmax_top.v:2348）"
+        },
+        {
+          "port": "m4_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m4_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m4_addr_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m4_sel_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m4_we_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m4_cyc_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m4_stb_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m4_ack_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m4_err_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m4_rty_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m4 实例接 clk_i（rtl/wb_conmax_top.v:2523）"
+        },
+        {
+          "port": "m5_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m5_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m5_addr_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m5_sel_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m5_we_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m5_cyc_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m5_stb_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m5_ack_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m5_err_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m5_rty_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m5 实例接 clk_i（rtl/wb_conmax_top.v:2698）"
+        },
+        {
+          "port": "m6_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m6_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m6_addr_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m6_sel_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m6_we_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m6_cyc_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m6_stb_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m6_ack_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m6_err_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m6_rty_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m6 实例接 clk_i（rtl/wb_conmax_top.v:2873）"
+        },
+        {
+          "port": "m7_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "m7_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "m7_addr_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "m7_sel_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "m7_we_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "m7_cyc_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "m7_stb_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "m7_ack_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "m7_err_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "m7_rty_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；m7 实例接 clk_i（rtl/wb_conmax_top.v:3048）"
+        },
+        {
+          "port": "s0_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s0_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s0_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s0_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s0_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s0_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s0_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s0_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s0_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s0_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s0 实例接 clk_i（rtl/wb_conmax_top.v:3228）"
+        },
+        {
+          "port": "s1_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s1_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s1_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s1_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s1_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s1_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s1_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s1_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s1_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s1_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s1 实例接 clk_i（rtl/wb_conmax_top.v:3324）"
+        },
+        {
+          "port": "s2_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s2_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s2_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s2_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s2_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s2_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s2_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s2_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s2_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s2_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s2 实例接 clk_i（rtl/wb_conmax_top.v:3420）"
+        },
+        {
+          "port": "s3_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s3_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s3_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s3_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s3_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s3_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s3_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s3_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s3_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s3_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s3 实例接 clk_i（rtl/wb_conmax_top.v:3516）"
+        },
+        {
+          "port": "s4_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s4_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s4_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s4_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s4_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s4_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s4_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s4_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s4_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s4_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s4 实例接 clk_i（rtl/wb_conmax_top.v:3612）"
+        },
+        {
+          "port": "s5_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s5_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s5_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s5_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s5_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s5_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s5_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s5_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s5_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s5_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s5 实例接 clk_i（rtl/wb_conmax_top.v:3708）"
+        },
+        {
+          "port": "s6_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s6_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s6_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s6_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s6_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s6_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s6_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s6_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s6_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s6_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s6 实例接 clk_i（rtl/wb_conmax_top.v:3804）"
+        },
+        {
+          "port": "s7_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s7_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s7_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s7_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s7_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s7_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s7_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s7_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s7_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s7_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s7 实例接 clk_i（rtl/wb_conmax_top.v:3900）"
+        },
+        {
+          "port": "s8_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s8_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s8_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s8_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s8_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s8_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s8_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s8_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s8_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s8_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s8 实例接 clk_i（rtl/wb_conmax_top.v:3996）"
+        },
+        {
+          "port": "s9_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s9_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s9_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s9_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s9_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s9_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s9_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s9_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s9_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s9_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s9 实例接 clk_i（rtl/wb_conmax_top.v:4092）"
+        },
+        {
+          "port": "s10_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s10_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s10_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s10_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s10_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s10_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s10_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s10_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s10_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s10_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s10 实例接 clk_i（rtl/wb_conmax_top.v:4188）"
+        },
+        {
+          "port": "s11_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s11_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s11_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s11_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s11_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s11_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s11_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s11_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s11_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s11_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s11 实例接 clk_i（rtl/wb_conmax_top.v:4284）"
+        },
+        {
+          "port": "s12_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s12_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s12_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s12_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s12_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s12_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s12_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s12_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s12_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s12_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s12 实例接 clk_i（rtl/wb_conmax_top.v:4380）"
+        },
+        {
+          "port": "s13_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s13_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s13_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s13_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s13_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s13_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s13_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s13_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s13_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s13_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s13 实例接 clk_i（rtl/wb_conmax_top.v:4476）"
+        },
+        {
+          "port": "s14_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s14_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s14_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s14_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s14_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s14_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s14_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s14_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s14_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s14_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s14 实例接 clk_i（rtl/wb_conmax_top.v:4572）"
+        },
+        {
+          "port": "s15_data_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668），经 i_s15 内部连线接 rf（rtl/wb_conmax_top.v:4667-4775）"
+        },
+        {
+          "port": "s15_data_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668）"
+        },
+        {
+          "port": "s15_addr_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668）"
+        },
+        {
+          "port": "s15_sel_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668）"
+        },
+        {
+          "port": "s15_we_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668）"
+        },
+        {
+          "port": "s15_cyc_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668）"
+        },
+        {
+          "port": "s15_stb_o",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668）"
+        },
+        {
+          "port": "s15_ack_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668）"
+        },
+        {
+          "port": "s15_err_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668）"
+        },
+        {
+          "port": "s15_rty_i",
+          "clock_name": "clk_i",
+          "basis": "单时钟设计；s15 实例接 clk_i（rtl/wb_conmax_top.v:4668）"
+        }
+      ],
+      "clock_relationships": [],
+      "default_policy": {
+        "source": "user_provided_SRAM_ariane_initial_template",
+        "template_file": "seeds/templates/single_clock.sdc.template",
+        "apply_when": "no_existing_sdc_and_confirmed_single_primary_input_clock",
+        "time_unit": "ns",
+        "clock_period_ns": 1.0,
+        "input_delay_max_ns": 0.3,
+        "input_delay_min_ns": 0.1,
+        "output_delay_max_ns": null,
+        "output_delay_min_ns": null,
+        "clock_uncertainty_ns": null,
+        "input_transition_ns": null,
+        "driving_cell": null,
+        "output_load_pf": null,
+        "clock_waveform": "50_percent_duty_cycle_evaluation_assumption",
+        "reset_false_path": "do_not_infer",
+        "timing_exceptions": "require_explicit_evidence",
+        "existing_sdc_action": "preserve_and_review",
+        "incomplete_constraints_action": "record_unresolved_do_not_claim_complete"
+      }
+    },
+    "unresolved": null
+  }
+}

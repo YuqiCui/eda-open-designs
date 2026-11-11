@@ -1,0 +1,13 @@
+# Default evaluation conditions from the user-provided SRAM_ariane template.
+# Single confirmed primary input clock only. Do not overwrite an existing SDC.
+# Convert 1.0 / 0.3 / 0.1 ns to the active STA/Liberty time unit before binding.
+# @CLOCK_NAME@: unique SDC clock name.
+# @CLOCK_PORT_TCL@: clock port name quoted as one Tcl list element.
+# @DATA_INPUT_PORTS_TCL@: explicit Tcl list of confirmed data inputs for this clock.
+# Omit both input-delay commands if the confirmed data-input list is empty.
+# Reset constraints require explicit review; no automatic false paths.
+# Output delay, driving cell, transition and load are unspecified by the source template.
+# This file is a rendering template, not a complete or directly executable SDC.
+create_clock -name @CLOCK_NAME@ -period @PERIOD_TOOL_UNITS@ [get_ports [list @CLOCK_PORT_TCL@]]
+set_input_delay -clock @CLOCK_NAME@ -max @INPUT_MAX_TOOL_UNITS@ [get_ports [list @DATA_INPUT_PORTS_TCL@]]
+set_input_delay -clock @CLOCK_NAME@ -min @INPUT_MIN_TOOL_UNITS@ [get_ports [list @DATA_INPUT_PORTS_TCL@]]

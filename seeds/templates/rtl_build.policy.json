@@ -1,0 +1,28 @@
+{
+  "template_version": "2.0",
+  "execution": {
+    "synthesis_libraries": null,
+    "aig_model_libraries": null,
+    "timeout_sec": 1800
+  },
+  "timing_default_policy": {
+    "source": "user_provided_SRAM_ariane_initial_template",
+    "template_file": "seeds/templates/single_clock.sdc.template",
+    "apply_when": "no_existing_sdc_and_confirmed_single_primary_input_clock",
+    "time_unit": "ns",
+    "clock_period_ns": 1.0,
+    "input_delay_max_ns": 0.3,
+    "input_delay_min_ns": 0.1,
+    "output_delay_max_ns": null,
+    "output_delay_min_ns": null,
+    "clock_uncertainty_ns": null,
+    "input_transition_ns": null,
+    "driving_cell": null,
+    "output_load_pf": null,
+    "clock_waveform": "50_percent_duty_cycle_evaluation_assumption",
+    "reset_false_path": "do_not_infer",
+    "timing_exceptions": "require_explicit_evidence",
+    "existing_sdc_action": "preserve_and_review",
+    "incomplete_constraints_action": "record_unresolved_do_not_claim_complete"
+  }
+}

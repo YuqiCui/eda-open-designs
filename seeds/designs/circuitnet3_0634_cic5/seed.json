@@ -1,0 +1,1337 @@
+{
+  "schema_version": "1.1",
+  "id": "circuitnet3_0634_cic5",
+  "rtl": {
+    "top": "cic5",
+    "files": [
+      "rtl/design.v"
+    ],
+    "language": {
+      "standard": "verilog-2005",
+      "basis": "rtl/design.v:1-47 仅单模块 cic5，使用 module/端口列表、reg signed 数组、integer、for、always @(posedge clk) 等 Verilog-2001/2005 语法；无 always_comb/logic/interface/typedef 等 SystemVerilog 构造，也无 $error/$fatal 系统任务"
+    },
+    "include_dirs": [],
+    "defines": {},
+    "parameters": {},
+    "resources": []
+  },
+  "build_inputs": {
+    "timing": {
+      "existing_sdc": {
+        "selected": null,
+        "basis": null,
+        "files": []
+      },
+      "design_kind": "sequential",
+      "ports": [
+        {
+          "name": "clk",
+          "direction": "input",
+          "width": 1,
+          "role": "clock",
+          "basis": "rtl/design.v:2 声明为 input clk，rtl/design.v:13 作为唯一 always @(posedge clk) 时钟"
+        },
+        {
+          "name": "rst_n",
+          "direction": "input",
+          "width": 1,
+          "role": "reset",
+          "basis": "rtl/design.v:3 声明为 input rst_n，rtl/design.v:15 以 rst_n == 1'b0 触发同步复位分支"
+        },
+        {
+          "name": "d_in",
+          "direction": "input",
+          "width": 16,
+          "role": "data",
+          "basis": "rtl/design.v:4 input signed [15:0] d_in，rtl/design.v:29 作为积分器输入被采样"
+        },
+        {
+          "name": "d_out",
+          "direction": "output",
+          "width": 28,
+          "role": "data",
+          "basis": "rtl/design.v:5 output reg signed [27:0] d_out，rtl/design.v:43 抽取时刻输出 tmp[5]"
+        },
+        {
+          "name": "d_out_valid",
+          "direction": "output",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:6 output reg d_out_valid，rtl/design.v:27/42 每 5 个 clk 周期置 1 的输出有效标志"
+        }
+      ],
+      "clocks": [
+        {
+          "name": "clk",
+          "kind": "primary",
+          "target": {
+            "kind": "port",
+            "name": "clk"
+          },
+          "source": null,
+          "active_edges": [
+            "rising"
+          ],
+          "divide_by": null,
+          "multiply_by": null,
+          "basis": "rtl/design.v:13 always @(posedge clk) 为设计内唯一时钟沿，直接来自顶层输入端口 clk(rtl/design.v:2)，无分频/倍频结构；decimation_count(11、28、33、41) 只产生数据有效节拍，不驱动时钟"
+        }
+      ],
+      "resets": [
+        {
+          "port": "rst_n",
+          "active_level": "low",
+          "kind": "synchronous",
+          "clock_names": [
+            "clk"
+          ],
+          "basis": "rtl/design.v:13-15 复位判断位于 always @(posedge clk) 内部、敏感列表不含 rst_n，故为同步低有效复位；17-23 行清零 int_s、comb_s、decimation_count、d_out、d_out_valid"
+        }
+      ],
+      "io_clock_associations": [
+        {
+          "port": "d_in",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:29 d_in 在 always @(posedge clk) 内被 int_s[1] 采样，仅有时钟域 clk"
+        },
+        {
+          "port": "d_out",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:43 d_out 在 always @(posedge clk) 内寄存器输出，且仅在 decimation_count==3'd4 的 clk 周期更新"
+        },
+        {
+          "port": "d_out_valid",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:27、42 d_out_valid 由 always @(posedge clk) 驱动的寄存器输出"
+        }
+      ],
+      "clock_relationships": [],
+      "default_policy": {
+        "source": "user_provided_SRAM_ariane_initial_template",
+        "template_file": "seeds/templates/single_clock.sdc.template",
+        "apply_when": "no_existing_sdc_and_confirmed_single_primary_input_clock",
+        "time_unit": "ns",
+        "clock_period_ns": 1.0,
+        "input_delay_max_ns": 0.3,
+        "input_delay_min_ns": 0.1,
+        "output_delay_max_ns": null,
+        "output_delay_min_ns": null,
+        "clock_uncertainty_ns": null,
+        "input_transition_ns": null,
+        "driving_cell": null,
+        "output_load_pf": null,
+        "clock_waveform": "50_percent_duty_cycle_evaluation_assumption",
+        "reset_false_path": "do_not_infer",
+        "timing_exceptions": "require_explicit_evidence",
+        "existing_sdc_action": "preserve_and_review",
+        "incomplete_constraints_action": "record_unresolved_do_not_claim_complete"
+      }
+    },
+    "dependencies": [],
+    "special_constructs": {
+      "blackboxes": [],
+      "inout_or_tristate": [],
+      "memories_or_initialization": [
+        {
+          "files": [
+            "rtl/design.v"
+          ],
+          "description": "rtl/design.v:8-10 声明三个 reg signed [27:0] 数组 int_s[1:5]、comb_s[1:5]、tmp[1:5]，无 initial 块或 $readmem 初始化；int_s/comb_s 在 rst_n 低电平时清零(17-20)并作为累加/梳状延迟寄存器使用(29-39)，tmp 仅在 decimation_count==3'd4 分支内以阻塞赋值当组合中间值(35-40)"
+        }
+      ],
+      "hierarchy_attributes": [],
+      "unsupported_or_nonsynthesizable": [
+        {
+          "files": [
+            "rtl/design.v"
+          ],
+          "description": "rtl/design.v:35-40 在时钟上升沿 always 块内对 reg 数组 tmp 使用阻塞赋值，且与非阻塞赋值(36、39、41-43)混用；同时 decimation_count 在 28 与 41 行被两次非阻塞赋值。均为可综合写法但易触发 lint 告警(BLKSEQ/多次驱动同一变量)"
+        }
+      ]
+    },
+    "unresolved": [
+      "输入清单未提供任何 SDC 文件，无法确认已有约束入口，timing.existing_sdc.selected/basis 为 null。",
+      "rtl/design.v:10 的 tmp[1:5] 无复位值且仅在抽取分支(35-40)内以阻塞赋值写入后于同周期读取；其在综合后是否被推断为寄存器以及首次抽取前的取值未验证，可能影响 d_out 首拍数值。"
+    ]
+  },
+  "completion": {
+    "categories": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "compile": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "lint": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "synthesis": {
+      "status": "passed",
+      "run_id": "20261106T083859Z_circuitnet3_qwen38",
+      "fingerprint": "f5121df30914dc794e7cce91fd0a591f4a011ae6a6f987a7a0f2c6807473d9ed"
+    },
+    "aig": {
+      "status": "passed",
+      "run_id": "20261106T083859Z_circuitnet3_qwen38",
+      "fingerprint": "76f88468ae20eca51794338d268d2dad37541c1e4e4e60f4454d71048c9e1cfb"
+    },
+    "cocotb": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "formal": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "timing": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    }
+  },
+  "verification": {
+    "aig": {
+      "tool": "yosys_abc_aigmap",
+      "script": "tests/aig.ys",
+      "timeout_sec": 1800,
+      "model_flow": "liberty_functional_v1",
+      "library_files": [
+        {
+          "id": "nangate45/nangate45",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/nangate45/nangate45.lib",
+          "sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895",
+          "model_path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/verification/aig/models/nangate45/nangate45/functional.v",
+          "model_sha256": "3ae8438663ad4a363733c518689a77104f183ee800befd22a36d1fdc342fb704"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib",
+          "sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135",
+          "model_path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/verification/aig/models/sky130/sky130_fd_sc_hd__tt_025C_1v80/functional.v",
+          "model_sha256": "8483f6625076025e678fb8689343a5028ce1121f257eee8fa0239e2deb114bcc"
+        }
+      ],
+      "result_source": "generic_script_replay",
+      "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)",
+      "result": {
+        "status": "pass",
+        "error": null,
+        "metrics": {
+          "aig_count": 2404,
+          "aig_depth": 73,
+          "aig_adp": 175492
+        }
+      }
+    },
+    "synthesis": {
+      "tool": "yosys_abc",
+      "script": "tests/synth.ys",
+      "timeout_sec": 1800,
+      "library_files": [
+        {
+          "id": "nangate45/nangate45",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/nangate45/nangate45.lib",
+          "sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_100C_1v65",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_100C_1v65.lib",
+          "sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_100C_1v95",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_100C_1v95.lib",
+          "sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v56",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v56.lib",
+          "sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v65",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v65.lib",
+          "sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v76",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v76.lib",
+          "sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v95",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v95.lib",
+          "sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_100C_1v40",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_100C_1v40.lib",
+          "sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_100C_1v60",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_100C_1v60.lib",
+          "sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v28",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v28.lib",
+          "sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v35",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v35.lib",
+          "sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v40",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v40.lib",
+          "sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v44",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v44.lib",
+          "sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v60",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v60.lib",
+          "sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ss_n40C_1v76",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ss_n40C_1v76.lib",
+          "sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib",
+          "sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_100C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_100C_1v80.lib",
+          "sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b"
+        }
+      ],
+      "result_source": "generic_script_replay",
+      "supported_liberties": [
+        "nangate45/nangate45",
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65",
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v76",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v95",
+        "sky130/sky130_fd_sc_hd__ss_100C_1v40",
+        "sky130/sky130_fd_sc_hd__ss_100C_1v60",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v28",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v35",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v40",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v44",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v60",
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v76",
+        "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+        "sky130/sky130_fd_sc_hd__tt_100C_1v80"
+      ],
+      "baselines": {
+        "nangate45/nangate45": {
+          "cell_area": 3406.662,
+          "cell_count": 2162,
+          "cell_types": {
+            "AND2_X1": 67,
+            "AND3_X1": 13,
+            "AOI211_X1": 2,
+            "AOI21_X1": 249,
+            "AOI221_X1": 1,
+            "AOI22_X1": 73,
+            "DFF_X1": 312,
+            "INV_X1": 177,
+            "NAND2_X1": 309,
+            "NAND3_X1": 20,
+            "NAND4_X1": 1,
+            "NOR2_X1": 152,
+            "NOR3_X1": 26,
+            "OAI211_X1": 12,
+            "OAI21_X1": 260,
+            "OAI22_X1": 2,
+            "OR2_X1": 78,
+            "OR3_X1": 3,
+            "XNOR2_X1": 282,
+            "XOR2_X1": 123
+          },
+          "wire_count": 2043,
+          "wire_bits": 2494,
+          "liberty_sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v76": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v95": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v40": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v60": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v28": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v35": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v40": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v44": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v60": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v76": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84"
+        },
+        "sky130/sky130_fd_sc_hd__tt_025C_1v80": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+        },
+        "sky130/sky130_fd_sc_hd__tt_100C_1v80": {
+          "cell_area": 16582.1536,
+          "cell_count": 1866,
+          "cell_types": {
+            "sky130_fd_sc_hd__a211o_1": 1,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 14,
+            "sky130_fd_sc_hd__a21oi_1": 204,
+            "sky130_fd_sc_hd__a22o_1": 32,
+            "sky130_fd_sc_hd__a311oi_1": 1,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 15,
+            "sky130_fd_sc_hd__a32o_1": 1,
+            "sky130_fd_sc_hd__and2_0": 46,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and3b_1": 2,
+            "sky130_fd_sc_hd__clkinv_1": 74,
+            "sky130_fd_sc_hd__dfxtp_1": 312,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 7,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 16,
+            "sky130_fd_sc_hd__maj3_1": 146,
+            "sky130_fd_sc_hd__nand2_1": 252,
+            "sky130_fd_sc_hd__nand2b_1": 20,
+            "sky130_fd_sc_hd__nand3_1": 10,
+            "sky130_fd_sc_hd__nor2_1": 144,
+            "sky130_fd_sc_hd__nor2b_1": 2,
+            "sky130_fd_sc_hd__o211ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 207,
+            "sky130_fd_sc_hd__o21ba_1": 6,
+            "sky130_fd_sc_hd__o22ai_1": 23,
+            "sky130_fd_sc_hd__o2bb2ai_1": 15,
+            "sky130_fd_sc_hd__o311ai_0": 1,
+            "sky130_fd_sc_hd__o31a_1": 1,
+            "sky130_fd_sc_hd__o41ai_1": 1,
+            "sky130_fd_sc_hd__or3b_1": 1,
+            "sky130_fd_sc_hd__or4_1": 1,
+            "sky130_fd_sc_hd__xnor2_1": 151,
+            "sky130_fd_sc_hd__xnor3_1": 55,
+            "sky130_fd_sc_hd__xor2_1": 95,
+            "sky130_fd_sc_hd__xor3_1": 4
+          },
+          "wire_count": 1570,
+          "wire_bits": 1884,
+          "liberty_sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b"
+        }
+      },
+      "library_results": {
+        "nangate45/nangate45": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 2 multi-output cells (for example, \"FA_X1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v76": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "0f5b7ceef23114c3834870f86c2f90ea24d597622fcd5abd2916b1fb604e8a26"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v95": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "fb61d91c55a7f85b1989e8149d040b13ba5e7f5478f5bf0c3c16c5da30720139"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v40": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "88c8ce95b6a7f333bd9e618fc765c3005fbeccfca2727226bd821c0d16fcaac8"
+        },
+        "sky130/sky130_fd_sc_hd__ss_100C_1v60": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "9b24f0db3967ac67b4cae1f74bb480fd47922d18d0ed577e3c121739b412c361"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v28": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "afd8201328f73996b7c80bf13909674ba7b483ec413dea3fca74831cec712578"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v35": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "8fd5aefd2053feef0a9bd3a5a972680dd77ddb8dda744836611656f37f969855"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v40": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "2c6c61b165c313a6eb18d805431f981cebf9cf138cec39a67d01ea99f63a4717"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v44": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "88814187f8226bb6e7ad394a1afef161eb1c4006ed1f095cc31ab0da7dae1f0f"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v60": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "23cba893b985a950a7951e3f29ae66ae6a639aaef75c1478e2306fb68d4a7ee5"
+        },
+        "sky130/sky130_fd_sc_hd__ss_n40C_1v76": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "f4f16d4f7040623afb60d0480a035e4128c5c1212361ae3bd13c3a52d9692a84"
+        },
+        "sky130/sky130_fd_sc_hd__tt_025C_1v80": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135"
+        },
+        "sky130/sky130_fd_sc_hd__tt_100C_1v80": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "Warning: Replacing memory \\tmp with list of registers. See rtl/design.v:38, rtl/design.v:35",
+            "Warning: Replacing memory \\comb_s with list of registers. See rtl/design.v:19",
+            "Warning: Replacing memory \\int_s with list of registers. See rtl/design.v:18",
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "7c6b9fc62d7e83b8317cdca883d79107d8f2ff1061b04519fda7d3088560015b"
+        }
+      },
+      "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)"
+    }
+  }
+}

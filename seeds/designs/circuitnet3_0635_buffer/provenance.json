@@ -1,0 +1,26 @@
+{
+  "repository": "https://github.com/sklp-eda-lab/iclr-circuitnet_3.0",
+  "revision": "71984703fcd203ebc84c41b5c19f056cde4be43e",
+  "rtl": "rtl/design.v",
+  "top_inference": {
+    "method": "single_declared_module",
+    "candidates": [
+      "buffer"
+    ]
+  },
+  "testbenches": [
+    {
+      "path": "tests/verilog/tb_01.v",
+      "sources": [
+        {
+          "file": "github_v_tb_description.jsonl",
+          "line": 738
+        },
+        {
+          "file": "github_v_tb_description.jsonl",
+          "line": 793
+        }
+      ]
+    }
+  ]
+}

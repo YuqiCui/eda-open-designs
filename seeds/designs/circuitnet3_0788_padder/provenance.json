@@ -1,0 +1,30 @@
+{
+  "repository": "https://github.com/sklp-eda-lab/iclr-circuitnet_3.0",
+  "revision": "71984703fcd203ebc84c41b5c19f056cde4be43e",
+  "rtl": "rtl/design.v",
+  "top_inference": {
+    "method": "single_declared_module",
+    "candidates": [
+      "padder"
+    ]
+  },
+  "testbenches": [
+    {
+      "path": "tests/verilog/tb_01.v",
+      "sources": [
+        {
+          "file": "opencore_v_tb_description.jsonl",
+          "line": 96
+        }
+      ]
+    }
+  ],
+  "recovered_dependencies": [
+    {
+      "name": "padder1",
+      "source": "https://raw.githubusercontent.com/fabriziotappero/ip-cores/8075cdbae9552703374369002c6730c366f5b708/high_throughput_core/rtl/padder1.v",
+      "method": "matched_upstream",
+      "path": "rtl/dependencies/padder1.v"
+    }
+  ]
+}

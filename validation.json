@@ -1,0 +1,329 @@
+{
+  "validated_on": "2026-11-11",
+  "tools": {
+    "python": "3.12",
+    "cocotb": "2.0.1",
+    "iverilog": "13.0"
+  },
+  "asset_integrity": {
+    "design_count": 43,
+    "source_files_compared_byte_for_byte": 470,
+    "rtl_file_count": 222,
+    "file_reference_issues": 0
+  },
+  "compile": {
+    "passed": 43,
+    "failed": 0,
+    "timeout_sec_per_design": 1800,
+    "cases": [
+      {
+        "id": "circuitnet3_0087_iob_ram_sp_be",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0308_multi_32bit",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0357_iob_ram_sp",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0634_cic5",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0635_buffer",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0643_iob_ram_dp_be",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0693_iob_ram_dp",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0788_padder",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0791_f_permutation",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0792_keccak",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0793_padder",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0796_keccak",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0797_f_permutation",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0798_table_lookup",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0807_rs_encode",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0815_fsm",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "circuitnet3_0861_wbscope",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_aes",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_aes_secworks",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_aes_xcrypt",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_des3_area",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_dft",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_dynamic_node",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_ethernet",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_fir",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_idft",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_iir",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_mem_ctrl",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_pci",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_picosoc",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_sha256",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_spi",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_tv80",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_vga_lcd",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "openabcd_wb_conmax",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "picorv32",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "picorv32_axi",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "picorv32_axi_adapter",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "picorv32_pcpi_div",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "picorv32_pcpi_fast_mul",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "picorv32_pcpi_mul",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "picorv32_regs",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      },
+      {
+        "id": "picorv32_wb",
+        "language_standard": "verilog-2005",
+        "iverilog_generation": "2005",
+        "status": "pass"
+      }
+    ]
+  },
+  "cocotb": {
+    "passed_designs": 8,
+    "failed_designs": 0,
+    "cases": [
+      {
+        "id": "picorv32",
+        "returncode": 0
+      },
+      {
+        "id": "picorv32_axi",
+        "returncode": 0
+      },
+      {
+        "id": "picorv32_axi_adapter",
+        "returncode": 0
+      },
+      {
+        "id": "picorv32_pcpi_div",
+        "returncode": 0
+      },
+      {
+        "id": "picorv32_pcpi_fast_mul",
+        "returncode": 0
+      },
+      {
+        "id": "picorv32_pcpi_mul",
+        "returncode": 0
+      },
+      {
+        "id": "picorv32_regs",
+        "returncode": 0
+      },
+      {
+        "id": "picorv32_wb",
+        "returncode": 0
+      }
+    ]
+  },
+  "original_verilog_testbench_smoke": {
+    "id": "circuitnet3_0308_multi_32bit",
+    "testbench": "tb_01.v",
+    "returncode": 0,
+    "interpretation": "Original testbench compiled and simulator exited cleanly"
+  },
+  "standalone_runner_controls": {
+    "assertion_failure_rejected": true,
+    "skipped_test_rejected": true,
+    "timeout_terminated": true
+  },
+  "scope": "Compilation of all included tops, existing PicoRV32 cocotb tests, one original CircuitNet3 testbench smoke run, and standalone runner failure controls"
+}

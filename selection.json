@@ -1,0 +1,21 @@
+{
+  "included_design_count": 43,
+  "rule": "all picorv32 family designs OR successful current Nangate45 mapped cell_count > 2000",
+  "threshold": 2000,
+  "comparison": "strictly_greater_than",
+  "metric": "baseline.cell_count",
+  "library_id": "nangate45/nangate45",
+  "library_sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895",
+  "statistics_run_id": "20261106T083859Z_circuitnet3_qwen38",
+  "statistics_updated_at": "2026-11-06T09:13:43.668203+00:00",
+  "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)",
+  "gate_threshold_matches": 40,
+  "picorv32_family_count": 8,
+  "overlap_count": 5,
+  "omitted_historical_entries": [
+    {
+      "id": "circuitnet3_0123_picorv32__picorv32",
+      "reason": "not present in the current standardized designs directory"
+    }
+  ]
+}

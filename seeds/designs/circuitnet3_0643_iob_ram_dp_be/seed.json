@@ -1,0 +1,694 @@
+{
+  "schema_version": "1.1",
+  "id": "circuitnet3_0643_iob_ram_dp_be",
+  "rtl": {
+    "top": "iob_ram_dp_be",
+    "files": [
+      "rtl/design.v"
+    ],
+    "language": {
+      "standard": "verilog-2005",
+      "basis": "rtl/design.v:50-82 为未定义 IS_CYCLONEV 时的生效分支，仅用 parameter/localparam、always @(posedge)、$readmemh、for 循环等 Verilog-2001/2005 语法；全文件无 interface/logic/always_ff 等 SystemVerilog 语法，也无 $error/$fatal，未用 do 等保留字作标识符。"
+    },
+    "include_dirs": [],
+    "defines": {},
+    "parameters": {},
+    "resources": []
+  },
+  "build_inputs": {
+    "timing": {
+      "existing_sdc": {
+        "selected": null,
+        "basis": null,
+        "files": []
+      },
+      "design_kind": "sequential",
+      "ports": [
+        {
+          "name": "clk",
+          "direction": "input",
+          "width": 1,
+          "role": "clock",
+          "basis": "rtl/design.v:9；驱动 :58、:71 的 always @(posedge clk)"
+        },
+        {
+          "name": "enA",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:10；A 口同步使能，:59 在 clk 上升沿采样"
+        },
+        {
+          "name": "weA",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/design.v:11 宽度 DATA_W/8，默认 DATA_W=32 得 4；字节写使能，:61 同步采样"
+        },
+        {
+          "name": "addrA",
+          "direction": "input",
+          "width": 10,
+          "role": "data",
+          "basis": "rtl/design.v:12 宽度 ADDR_W，默认 10；:62,:65 同步采样"
+        },
+        {
+          "name": "dinA",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:13 宽度 DATA_W，默认 32；:62 同步采样"
+        },
+        {
+          "name": "doutA",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:14；由寄存器 doutA_int 经 :68 assign 输出，:65 在 clk 沿更新"
+        },
+        {
+          "name": "enB",
+          "direction": "input",
+          "width": 1,
+          "role": "data",
+          "basis": "rtl/design.v:15；B 口同步使能，:72 在 clk 上升沿采样"
+        },
+        {
+          "name": "weB",
+          "direction": "input",
+          "width": 4,
+          "role": "data",
+          "basis": "rtl/design.v:16 宽度 DATA_W/8=4（默认参数）；:74 同步采样"
+        },
+        {
+          "name": "addrB",
+          "direction": "input",
+          "width": 10,
+          "role": "data",
+          "basis": "rtl/design.v:17 宽度 ADDR_W=10（默认参数）；:75,:78 同步采样"
+        },
+        {
+          "name": "dinB",
+          "direction": "input",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:18 宽度 DATA_W=32（默认参数）；:75 同步采样"
+        },
+        {
+          "name": "doutB",
+          "direction": "output",
+          "width": 32,
+          "role": "data",
+          "basis": "rtl/design.v:19；由寄存器 doutB_int 经 :81 assign 输出，:78 在 clk 沿更新"
+        }
+      ],
+      "clocks": [
+        {
+          "name": "clk",
+          "kind": "primary",
+          "target": {
+            "kind": "port",
+            "name": "clk"
+          },
+          "source": null,
+          "active_edges": [
+            "rising"
+          ],
+          "divide_by": null,
+          "multiply_by": null,
+          "basis": "rtl/design.v:9 顶层输入端口；:58 与 :71 两处 always @(posedge clk) 为唯一时钟事件，无分频/倍频/门控结构。"
+        }
+      ],
+      "resets": [],
+      "io_clock_associations": [
+        {
+          "port": "enA",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:58-59 enA 在 always @(posedge clk) 内采样"
+        },
+        {
+          "port": "weA",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:58-61 weA 在 posedge clk 块内使用"
+        },
+        {
+          "port": "addrA",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:58,62,65 addrA 在 posedge clk 块内使用"
+        },
+        {
+          "port": "dinA",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:58-62 dinA 在 posedge clk 块内写入"
+        },
+        {
+          "port": "doutA",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:65,68 doutA 由 posedge clk 寄存的 doutA_int 驱动"
+        },
+        {
+          "port": "enB",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:71-72 enB 在 always @(posedge clk) 内采样"
+        },
+        {
+          "port": "weB",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:71-74 weB 在 posedge clk 块内使用"
+        },
+        {
+          "port": "addrB",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:71,75,78 addrB 在 posedge clk 块内使用"
+        },
+        {
+          "port": "dinB",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:71-75 dinB 在 posedge clk 块内写入"
+        },
+        {
+          "port": "doutB",
+          "clock_name": "clk",
+          "basis": "rtl/design.v:78,81 doutB 由 posedge clk 寄存的 doutB_int 驱动"
+        }
+      ],
+      "clock_relationships": [],
+      "default_policy": {
+        "source": "user_provided_SRAM_ariane_initial_template",
+        "template_file": "seeds/templates/single_clock.sdc.template",
+        "apply_when": "no_existing_sdc_and_confirmed_single_primary_input_clock",
+        "time_unit": "ns",
+        "clock_period_ns": 1.0,
+        "input_delay_max_ns": 0.3,
+        "input_delay_min_ns": 0.1,
+        "output_delay_max_ns": null,
+        "output_delay_min_ns": null,
+        "clock_uncertainty_ns": null,
+        "input_transition_ns": null,
+        "driving_cell": null,
+        "output_load_pf": null,
+        "clock_waveform": "50_percent_duty_cycle_evaluation_assumption",
+        "reset_false_path": "do_not_infer",
+        "timing_exceptions": "require_explicit_evidence",
+        "existing_sdc_action": "preserve_and_review",
+        "incomplete_constraints_action": "record_unresolved_do_not_claim_complete"
+      }
+    },
+    "dependencies": [],
+    "special_constructs": {
+      "blackboxes": [],
+      "inout_or_tristate": [],
+      "memories_or_initialization": [
+        {
+          "files": [
+            "rtl/design.v"
+          ],
+          "description": "行为级双口 RAM 数组 ram_block[(2**ADDR_W)-1:0]（rtl/design.v:52）；条件 initial $readmemh 初始化，默认 HEXFILE=\"none\" 时 mem_init_file_int==\"none.hex\" 跳过读取（rtl/design.v:53-55）；两个 always @(posedge clk) 块按字节写使能写同一数组并寄存读出（rtl/design.v:58-80）。"
+        }
+      ],
+      "hierarchy_attributes": [],
+      "unsupported_or_nonsynthesizable": []
+    },
+    "unresolved": []
+  },
+  "completion": {
+    "categories": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "compile": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "lint": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "synthesis": {
+      "status": "partial",
+      "run_id": "20261106T083859Z_circuitnet3_qwen38",
+      "fingerprint": "7cfd62e26b2b5896a6dc9e8cf650b5ed3f1fe65490eae2a55b4f0b7a35daf2a3"
+    },
+    "aig": {
+      "status": "passed",
+      "run_id": "20261106T083859Z_circuitnet3_qwen38",
+      "fingerprint": "7b7a03b3df5e08d75b356f682fff5bab6d9bfc08b7529196b6280ff7fb5a7a01"
+    },
+    "cocotb": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "formal": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    },
+    "timing": {
+      "status": "missing",
+      "run_id": null,
+      "fingerprint": null
+    }
+  },
+  "verification": {
+    "aig": {
+      "tool": "yosys_abc_aigmap",
+      "script": "tests/aig.ys",
+      "timeout_sec": 1800,
+      "model_flow": "liberty_functional_v1",
+      "library_files": [
+        {
+          "id": "nangate45/nangate45",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/nangate45/nangate45.lib",
+          "sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895",
+          "model_path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/verification/aig/models/nangate45/nangate45/functional.v",
+          "model_sha256": "3ae8438663ad4a363733c518689a77104f183ee800befd22a36d1fdc342fb704"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__tt_025C_1v80",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__tt_025C_1v80.lib",
+          "sha256": "8e78e14442062dba34d414fca6490b2f6b96038d4510d1438ca44fee31487135",
+          "model_path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/verification/aig/models/sky130/sky130_fd_sc_hd__tt_025C_1v80/functional.v",
+          "model_sha256": "8483f6625076025e678fb8689343a5028ce1121f257eee8fa0239e2deb114bcc"
+        }
+      ],
+      "result_source": "generic_script_replay",
+      "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)",
+      "result": {
+        "status": "pass",
+        "error": null,
+        "metrics": {
+          "aig_count": 309256,
+          "aig_depth": 20,
+          "aig_adp": 6185120
+        }
+      }
+    },
+    "synthesis": {
+      "tool": "yosys_abc",
+      "script": "tests/synth.ys",
+      "timeout_sec": 1800,
+      "library_files": [
+        {
+          "id": "nangate45/nangate45",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/nangate45/nangate45.lib",
+          "sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_100C_1v65",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_100C_1v65.lib",
+          "sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_100C_1v95",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_100C_1v95.lib",
+          "sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v56",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v56.lib",
+          "sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        {
+          "id": "sky130/sky130_fd_sc_hd__ff_n40C_1v65",
+          "path": "/Users/cuiyuqi/hw-project/eda/edaforge/seeds/libs/sky130/sky130_fd_sc_hd__ff_n40C_1v65.lib",
+          "sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        }
+      ],
+      "result_source": "generic_script_replay",
+      "supported_liberties": [
+        "nangate45/nangate45",
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65",
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56",
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65"
+      ],
+      "baselines": {
+        "nangate45/nangate45": {
+          "cell_area": 335709.822,
+          "cell_count": 183838,
+          "cell_types": {
+            "AND2_X1": 834,
+            "AND3_X1": 411,
+            "AND4_X1": 21,
+            "AOI211_X1": 229,
+            "AOI21_X1": 26690,
+            "AOI221_X1": 1988,
+            "AOI222_X1": 2473,
+            "AOI22_X1": 38113,
+            "DFF_X1": 32832,
+            "INV_X1": 7880,
+            "MUX2_X1": 20450,
+            "NAND2_X1": 9832,
+            "NAND3_X1": 2269,
+            "NAND4_X1": 182,
+            "NOR2_X1": 13105,
+            "NOR3_X1": 1956,
+            "NOR4_X1": 4580,
+            "OAI211_X1": 378,
+            "OAI21_X1": 5540,
+            "OAI221_X1": 2070,
+            "OAI222_X1": 1241,
+            "OAI22_X1": 9673,
+            "OAI33_X1": 154,
+            "OR2_X1": 794,
+            "OR3_X1": 82,
+            "OR4_X1": 61
+          },
+          "wire_count": 184873,
+          "wire_bits": 216765,
+          "liberty_sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65": {
+          "cell_area": 1848053.68,
+          "cell_count": 106555,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 7,
+            "sky130_fd_sc_hd__a2111oi_0": 67,
+            "sky130_fd_sc_hd__a211o_1": 12,
+            "sky130_fd_sc_hd__a211oi_1": 22,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 6,
+            "sky130_fd_sc_hd__a21oi_1": 1664,
+            "sky130_fd_sc_hd__a221o_1": 14,
+            "sky130_fd_sc_hd__a221oi_1": 82,
+            "sky130_fd_sc_hd__a222oi_1": 3268,
+            "sky130_fd_sc_hd__a22o_1": 1653,
+            "sky130_fd_sc_hd__a22oi_1": 6104,
+            "sky130_fd_sc_hd__a31o_1": 8,
+            "sky130_fd_sc_hd__a31oi_1": 996,
+            "sky130_fd_sc_hd__a41o_1": 28,
+            "sky130_fd_sc_hd__a41oi_1": 46,
+            "sky130_fd_sc_hd__and2_0": 6,
+            "sky130_fd_sc_hd__and3_1": 57,
+            "sky130_fd_sc_hd__and3b_1": 12,
+            "sky130_fd_sc_hd__and4_1": 30,
+            "sky130_fd_sc_hd__and4b_1": 23,
+            "sky130_fd_sc_hd__edfxtp_1": 32832,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 12,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 8,
+            "sky130_fd_sc_hd__mux2_1": 32768,
+            "sky130_fd_sc_hd__mux4_2": 13608,
+            "sky130_fd_sc_hd__nand2_1": 2218,
+            "sky130_fd_sc_hd__nand2b_1": 6,
+            "sky130_fd_sc_hd__nand3_1": 703,
+            "sky130_fd_sc_hd__nand3b_1": 13,
+            "sky130_fd_sc_hd__nand4_1": 133,
+            "sky130_fd_sc_hd__nand4b_1": 37,
+            "sky130_fd_sc_hd__nand4bb_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 219,
+            "sky130_fd_sc_hd__nor3_1": 4211,
+            "sky130_fd_sc_hd__nor3b_1": 14,
+            "sky130_fd_sc_hd__nor4_1": 168,
+            "sky130_fd_sc_hd__nor4b_1": 18,
+            "sky130_fd_sc_hd__nor4bb_1": 11,
+            "sky130_fd_sc_hd__o2111a_1": 2,
+            "sky130_fd_sc_hd__o2111ai_1": 22,
+            "sky130_fd_sc_hd__o211a_1": 1,
+            "sky130_fd_sc_hd__o211ai_1": 5,
+            "sky130_fd_sc_hd__o21a_1": 9,
+            "sky130_fd_sc_hd__o21ai_0": 940,
+            "sky130_fd_sc_hd__o21bai_1": 4096,
+            "sky130_fd_sc_hd__o221a_1": 2,
+            "sky130_fd_sc_hd__o221ai_1": 7,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 26,
+            "sky130_fd_sc_hd__o31a_1": 46,
+            "sky130_fd_sc_hd__o31ai_1": 116,
+            "sky130_fd_sc_hd__o41a_1": 9,
+            "sky130_fd_sc_hd__o41ai_1": 73,
+            "sky130_fd_sc_hd__or3_1": 21,
+            "sky130_fd_sc_hd__or3b_1": 15,
+            "sky130_fd_sc_hd__or4_1": 68,
+            "sky130_fd_sc_hd__or4b_1": 7
+          },
+          "wire_count": 74696,
+          "wire_bits": 106650,
+          "liberty_sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95": {
+          "cell_area": 1848053.68,
+          "cell_count": 106555,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 7,
+            "sky130_fd_sc_hd__a2111oi_0": 67,
+            "sky130_fd_sc_hd__a211o_1": 12,
+            "sky130_fd_sc_hd__a211oi_1": 22,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 6,
+            "sky130_fd_sc_hd__a21oi_1": 1664,
+            "sky130_fd_sc_hd__a221o_1": 14,
+            "sky130_fd_sc_hd__a221oi_1": 82,
+            "sky130_fd_sc_hd__a222oi_1": 3268,
+            "sky130_fd_sc_hd__a22o_1": 1653,
+            "sky130_fd_sc_hd__a22oi_1": 6104,
+            "sky130_fd_sc_hd__a31o_1": 8,
+            "sky130_fd_sc_hd__a31oi_1": 996,
+            "sky130_fd_sc_hd__a41o_1": 28,
+            "sky130_fd_sc_hd__a41oi_1": 46,
+            "sky130_fd_sc_hd__and2_0": 6,
+            "sky130_fd_sc_hd__and3_1": 57,
+            "sky130_fd_sc_hd__and3b_1": 12,
+            "sky130_fd_sc_hd__and4_1": 30,
+            "sky130_fd_sc_hd__and4b_1": 23,
+            "sky130_fd_sc_hd__edfxtp_1": 32832,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 12,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 8,
+            "sky130_fd_sc_hd__mux2_1": 32768,
+            "sky130_fd_sc_hd__mux4_2": 13608,
+            "sky130_fd_sc_hd__nand2_1": 2218,
+            "sky130_fd_sc_hd__nand2b_1": 6,
+            "sky130_fd_sc_hd__nand3_1": 703,
+            "sky130_fd_sc_hd__nand3b_1": 13,
+            "sky130_fd_sc_hd__nand4_1": 133,
+            "sky130_fd_sc_hd__nand4b_1": 37,
+            "sky130_fd_sc_hd__nand4bb_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 219,
+            "sky130_fd_sc_hd__nor3_1": 4211,
+            "sky130_fd_sc_hd__nor3b_1": 14,
+            "sky130_fd_sc_hd__nor4_1": 168,
+            "sky130_fd_sc_hd__nor4b_1": 18,
+            "sky130_fd_sc_hd__nor4bb_1": 11,
+            "sky130_fd_sc_hd__o2111a_1": 2,
+            "sky130_fd_sc_hd__o2111ai_1": 22,
+            "sky130_fd_sc_hd__o211a_1": 1,
+            "sky130_fd_sc_hd__o211ai_1": 5,
+            "sky130_fd_sc_hd__o21a_1": 9,
+            "sky130_fd_sc_hd__o21ai_0": 940,
+            "sky130_fd_sc_hd__o21bai_1": 4096,
+            "sky130_fd_sc_hd__o221a_1": 2,
+            "sky130_fd_sc_hd__o221ai_1": 7,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 26,
+            "sky130_fd_sc_hd__o31a_1": 46,
+            "sky130_fd_sc_hd__o31ai_1": 116,
+            "sky130_fd_sc_hd__o41a_1": 9,
+            "sky130_fd_sc_hd__o41ai_1": 73,
+            "sky130_fd_sc_hd__or3_1": 21,
+            "sky130_fd_sc_hd__or3b_1": 15,
+            "sky130_fd_sc_hd__or4_1": 68,
+            "sky130_fd_sc_hd__or4b_1": 7
+          },
+          "wire_count": 74696,
+          "wire_bits": 106650,
+          "liberty_sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56": {
+          "cell_area": 1848053.68,
+          "cell_count": 106555,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 7,
+            "sky130_fd_sc_hd__a2111oi_0": 67,
+            "sky130_fd_sc_hd__a211o_1": 12,
+            "sky130_fd_sc_hd__a211oi_1": 22,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 6,
+            "sky130_fd_sc_hd__a21oi_1": 1664,
+            "sky130_fd_sc_hd__a221o_1": 14,
+            "sky130_fd_sc_hd__a221oi_1": 82,
+            "sky130_fd_sc_hd__a222oi_1": 3268,
+            "sky130_fd_sc_hd__a22o_1": 1653,
+            "sky130_fd_sc_hd__a22oi_1": 6104,
+            "sky130_fd_sc_hd__a31o_1": 8,
+            "sky130_fd_sc_hd__a31oi_1": 996,
+            "sky130_fd_sc_hd__a41o_1": 28,
+            "sky130_fd_sc_hd__a41oi_1": 46,
+            "sky130_fd_sc_hd__and2_0": 6,
+            "sky130_fd_sc_hd__and3_1": 57,
+            "sky130_fd_sc_hd__and3b_1": 12,
+            "sky130_fd_sc_hd__and4_1": 30,
+            "sky130_fd_sc_hd__and4b_1": 23,
+            "sky130_fd_sc_hd__edfxtp_1": 32832,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 12,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 8,
+            "sky130_fd_sc_hd__mux2_1": 32768,
+            "sky130_fd_sc_hd__mux4_2": 13608,
+            "sky130_fd_sc_hd__nand2_1": 2218,
+            "sky130_fd_sc_hd__nand2b_1": 6,
+            "sky130_fd_sc_hd__nand3_1": 703,
+            "sky130_fd_sc_hd__nand3b_1": 13,
+            "sky130_fd_sc_hd__nand4_1": 133,
+            "sky130_fd_sc_hd__nand4b_1": 37,
+            "sky130_fd_sc_hd__nand4bb_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 219,
+            "sky130_fd_sc_hd__nor3_1": 4211,
+            "sky130_fd_sc_hd__nor3b_1": 14,
+            "sky130_fd_sc_hd__nor4_1": 168,
+            "sky130_fd_sc_hd__nor4b_1": 18,
+            "sky130_fd_sc_hd__nor4bb_1": 11,
+            "sky130_fd_sc_hd__o2111a_1": 2,
+            "sky130_fd_sc_hd__o2111ai_1": 22,
+            "sky130_fd_sc_hd__o211a_1": 1,
+            "sky130_fd_sc_hd__o211ai_1": 5,
+            "sky130_fd_sc_hd__o21a_1": 9,
+            "sky130_fd_sc_hd__o21ai_0": 940,
+            "sky130_fd_sc_hd__o21bai_1": 4096,
+            "sky130_fd_sc_hd__o221a_1": 2,
+            "sky130_fd_sc_hd__o221ai_1": 7,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 26,
+            "sky130_fd_sc_hd__o31a_1": 46,
+            "sky130_fd_sc_hd__o31ai_1": 116,
+            "sky130_fd_sc_hd__o41a_1": 9,
+            "sky130_fd_sc_hd__o41ai_1": 73,
+            "sky130_fd_sc_hd__or3_1": 21,
+            "sky130_fd_sc_hd__or3b_1": 15,
+            "sky130_fd_sc_hd__or4_1": 68,
+            "sky130_fd_sc_hd__or4b_1": 7
+          },
+          "wire_count": 74696,
+          "wire_bits": 106650,
+          "liberty_sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65": {
+          "cell_area": 1848053.68,
+          "cell_count": 106555,
+          "cell_types": {
+            "sky130_fd_sc_hd__a2111o_1": 7,
+            "sky130_fd_sc_hd__a2111oi_0": 67,
+            "sky130_fd_sc_hd__a211o_1": 12,
+            "sky130_fd_sc_hd__a211oi_1": 22,
+            "sky130_fd_sc_hd__a21boi_0": 1,
+            "sky130_fd_sc_hd__a21o_1": 6,
+            "sky130_fd_sc_hd__a21oi_1": 1664,
+            "sky130_fd_sc_hd__a221o_1": 14,
+            "sky130_fd_sc_hd__a221oi_1": 82,
+            "sky130_fd_sc_hd__a222oi_1": 3268,
+            "sky130_fd_sc_hd__a22o_1": 1653,
+            "sky130_fd_sc_hd__a22oi_1": 6104,
+            "sky130_fd_sc_hd__a31o_1": 8,
+            "sky130_fd_sc_hd__a31oi_1": 996,
+            "sky130_fd_sc_hd__a41o_1": 28,
+            "sky130_fd_sc_hd__a41oi_1": 46,
+            "sky130_fd_sc_hd__and2_0": 6,
+            "sky130_fd_sc_hd__and3_1": 57,
+            "sky130_fd_sc_hd__and3b_1": 12,
+            "sky130_fd_sc_hd__and4_1": 30,
+            "sky130_fd_sc_hd__and4b_1": 23,
+            "sky130_fd_sc_hd__edfxtp_1": 32832,
+            "sky130_fd_sc_hd__lpflow_inputiso1p_1": 12,
+            "sky130_fd_sc_hd__lpflow_isobufsrc_1": 8,
+            "sky130_fd_sc_hd__mux2_1": 32768,
+            "sky130_fd_sc_hd__mux4_2": 13608,
+            "sky130_fd_sc_hd__nand2_1": 2218,
+            "sky130_fd_sc_hd__nand2b_1": 6,
+            "sky130_fd_sc_hd__nand3_1": 703,
+            "sky130_fd_sc_hd__nand3b_1": 13,
+            "sky130_fd_sc_hd__nand4_1": 133,
+            "sky130_fd_sc_hd__nand4b_1": 37,
+            "sky130_fd_sc_hd__nand4bb_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 219,
+            "sky130_fd_sc_hd__nor3_1": 4211,
+            "sky130_fd_sc_hd__nor3b_1": 14,
+            "sky130_fd_sc_hd__nor4_1": 168,
+            "sky130_fd_sc_hd__nor4b_1": 18,
+            "sky130_fd_sc_hd__nor4bb_1": 11,
+            "sky130_fd_sc_hd__o2111a_1": 2,
+            "sky130_fd_sc_hd__o2111ai_1": 22,
+            "sky130_fd_sc_hd__o211a_1": 1,
+            "sky130_fd_sc_hd__o211ai_1": 5,
+            "sky130_fd_sc_hd__o21a_1": 9,
+            "sky130_fd_sc_hd__o21ai_0": 940,
+            "sky130_fd_sc_hd__o21bai_1": 4096,
+            "sky130_fd_sc_hd__o221a_1": 2,
+            "sky130_fd_sc_hd__o221ai_1": 7,
+            "sky130_fd_sc_hd__o22a_1": 4,
+            "sky130_fd_sc_hd__o22ai_1": 26,
+            "sky130_fd_sc_hd__o31a_1": 46,
+            "sky130_fd_sc_hd__o31ai_1": 116,
+            "sky130_fd_sc_hd__o41a_1": 9,
+            "sky130_fd_sc_hd__o41ai_1": 73,
+            "sky130_fd_sc_hd__or3_1": 21,
+            "sky130_fd_sc_hd__or3b_1": 15,
+            "sky130_fd_sc_hd__or4_1": 68,
+            "sky130_fd_sc_hd__or4b_1": 7
+          },
+          "wire_count": 74696,
+          "wire_bits": 106650,
+          "liberty_sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        }
+      },
+      "library_results": {
+        "nangate45/nangate45": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 2 multi-output cells (for example, \"FA_X1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "2efd0b32eb580e4e60e72fc0575bb3bc69aac907c91d908442e4ae6d7fe55895"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v65": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "913e67fc551be7e4e97fc031f3e72e5ef3251438ceeb44753f73b68df58f5650"
+        },
+        "sky130/sky130_fd_sc_hd__ff_100C_1v95": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "15c9ccefec536ff35d694314af5812e7c03b4e5a356ec8ea28f2e40bbeec04e7"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v56": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "d64f38f3e67f8adab818531901385dbd29c6a4805e6166f7166bcc3e9370ef88"
+        },
+        "sky130/sky130_fd_sc_hd__ff_n40C_1v65": {
+          "status": "pass",
+          "returncode": 0,
+          "error": null,
+          "warnings": [
+            "ABC: Warning: Detected 9 multi-output cells (for example, \"sky130_fd_sc_hd__fa_1\").",
+            "ABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\")."
+          ],
+          "liberty_sha256": "dd777cb159bf2fc853773d74a3c3e8269b73869d25aae49d0f80f117df9631ee"
+        }
+      },
+      "yosys_version": "Yosys 0.70+post (git sha1 0c11ea098be065e585a90a06e7b7da49936cf231, Release, AppleClang clang++ 17.0.0.17000604)",
+      "library_scope": {
+        "requested_libraries": 17,
+        "completed_libraries": 5,
+        "reason": "Stopped the remaining corners for this large memory after obtaining mapped results."
+      }
+    }
+  }
+}
